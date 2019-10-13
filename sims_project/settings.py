@@ -25,7 +25,7 @@ SECRET_KEY = '8#0q@*y)8-69kxan2jci5d(mb0f&o11-6(rm&y4rrvpg-63@0c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [pure-reef-36062.herokuapp.com, '127.0.0.1']
+ALLOWED_HOSTS = ['pure-reef-36062.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
