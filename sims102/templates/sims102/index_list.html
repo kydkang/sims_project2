@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <a href="{% url 'sims102:index_create' %}">+ Add new index data</a> 
+
+    {% for index in object_list %}
+        <div >
+            <a href="{% url 'sims102:index_detail' index.id %}">{{ index.data_one }}</a>
+            <a href="{% url 'sims102:index_detail' index.id %}">{{ index.data_two }}</a> 
+            <a href="{% url 'sims102:index_detail' index.id %}">{{ index.calculated_value }} </a>
+        </div>
+    {% endfor %}
+{% endblock content %}

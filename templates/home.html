@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- <div class="jumbotron">
+        <h1 class="display-5">Index Management System</h1>
+        <p class="lead">Set of indexes used in SNGRE</p>
+</div>
+ -->
+    {% if user.is_authenticated %}
+        <p class="mt-3"> Hi, {{ user.username }} </p> 
+        <li class="list-group-item"><a href="101/"> SIMS 101 </a> </li>
+        <li class="list-group-item"><a href="102/"> IMS 102 </a> </li>
+        <a href="{% url 'logout' %}" class="btn btn-primary mt-3"> logout </a> 
+    {% else %}
+        <p class="mt-3"> You are not logged in </p>
+        <a href="{% url 'login' %}" class="btn btn-info mt-3 custom-btn"> login </a>
+    {% endif %}
+</div>
+
+{% endblock content %}
+

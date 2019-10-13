@@ -1,0 +1,36 @@
+[[ Adding sims102 app ]] 
+Add a link in home.html 
+Copy sims101 and paste it at the same level
+Change the folder name to sims102
+In settings.py, add 'sims102' to INSTALLED_APPS
+
+In urls.py (project-level), add path('102/', include('sim102.urls')) 
+In urls.py (app-level), change app_name to sims102
+in apps.py, change the name in apps.py
+In admin.py, change to Index102
+
+In models.py,  
+  - create a new model 'index102'
+  - change department, index_name, and description
+
+In views.py, change
+  - from .models import Index102
+  - permission > sims102. ... 
+  - model = Index102
+  - template_name = 'sims102/ .... '
+
+In templates folder, change the subfolder name to sims102 
+In each file in templates/sims102 folder, change to {% url 'sims102: .... %} 
+
+Execute   python manage.py makemigrations sims102
+          python manage.py migrate sims102 
+
+Go to admin and add the 'Index Manager' of index102 to the (dept) group involved.
+
+If adding a new department, 
+  - create a new group 'depttwo' (group name for the department)
+  - add the permission 'Index Manager' of index102 app to the new group 
+  - create a user and add the user to the 'depttwo' group 
+
+If adding a new user to use all the indexes of depttwo, 
+  - create a user and add the user to the depttwo group 
