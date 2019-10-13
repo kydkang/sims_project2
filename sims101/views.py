@@ -8,7 +8,7 @@ class IndexListView(PermissionRequiredMixin, ListView):
     permission_required = ('sims101.index_manager') 
     model = Index101                      ###  Or,   queryset = Post.objects.all()
     template_name = 'sims101/index_list.html'   ### default context name is 'object_list'. To change it, enter context_object_name = 'posts'
-    ### paginate_by = 3       ## 3 objects per page 
+    paginate_by = 3       ## 3 objects per page 
 
 class IndexDetailView(PermissionRequiredMixin, DetailView):
     permission_required = ('sims101.index_manager') 

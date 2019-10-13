@@ -14,6 +14,7 @@ class Index101(models.Model):
         permissions = [
             ("index_manager", "Index Manager"), 
         ]
+        ordering = ['id'] 
 
     def calculate(self):
         return self.data_one + self.data_two
