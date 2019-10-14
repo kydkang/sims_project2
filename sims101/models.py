@@ -27,7 +27,7 @@ class Index101(models.Model):
         return str(self.data_one) + "   " + str(self.data_two)
 
     def get_absolute_url(self):
-        # or  return reverse('index_detail', args=[str(self.id)])
+        # or  return reverse('sims101:index_detail', args=[str(self.id)])
         return reverse('sims101:index_detail', kwargs={'pk': str(self.id)})
         # or you need to add success_url in CreateView and UpdateView
 
