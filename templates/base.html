@@ -33,7 +33,9 @@
       {% else %}
         <form class="form-inline my-2 my-lg-0 ml-auto">
           <a href="{% url 'login' %}" class="btn btn-outline-success my-2 my-sm-0" > Log in </a>
-
+          {% comment %}
+          <a href="{% url 'register' %}" class="btn btn-outline-success my-2 my-sm-0" > Register </a>
+          {% endcomment %}
         </form>
       {% endif %} 
     </div>
