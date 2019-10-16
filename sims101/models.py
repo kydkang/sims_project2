@@ -1,14 +1,15 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 class Index101(models.Model):  
     department = "SNGRE DEPARTMENT ONE"
     index_name = "Index name is oneOneOne"
     description = "Here is the description of the index one....... "
     
-    data_one = models.IntegerField()
-    data_two = models.DecimalField(max_digits=5, decimal_places=2)
-    calculated_value = models.CharField(max_length=32, blank=True, )  # to make it not visible in admin, use  editable=False
+    data_one = models.IntegerField(_('data one'), )
+    data_two = models.DecimalField(_('data two'), max_digits=5, decimal_places=2)
+    calculated_value = models.CharField(_('calculated value'), max_length=32, blank=True, )  # to make it not visible in admin, use  editable=False
 
     class Meta:
         permissions = [
