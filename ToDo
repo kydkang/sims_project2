@@ -1,0 +1,11 @@
+for each new index (index102)
+  create a new entity in Description Table
+        dept / index_name / descritpion /formula/ cycle ....
+        dept is choice field 
+           DEPT_CHOICES=(
+               ('dept_one', 'Direccion RDD'), 
+               (                           ), ....
+           )
+
+Need to create new app to create the Description Table..
+다른 App의 model을  index101, 102.. 에서 조회할 수 있나? 
