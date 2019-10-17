@@ -1,7 +1,34 @@
-.custom-btn {
+/* you need to clear the cache of the browser > configuration > advanced > delete cache */ 
+
+body {
+    /* background-color: lightblue;  */
+}
+
+.home-btn {
     width:140px; 
 }
 
-body {
-    /* background-color: lightblue; */
+.btn-detail {
+    width:100px;
+    padding:5px;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+    background-color: #334CFF;
+    border-color: #334CFF;
+}
+
+
+
+.btn-info,
+.btn-info:hover,
+.btn-info:active,
+.btn-info:visited,
+.btn-info:focus {
+    background-color: #236622;
+    border-color: #236622;
 }

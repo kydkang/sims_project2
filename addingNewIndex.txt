@@ -21,11 +21,19 @@ In views.py, change
 
 In templates folder, change the subfolder name to sims102 
 In each file in templates/sims102 folder, change to {% url 'sims102: .... %} 
+In index_list.html, 
+   - change column head name
+   - add/delete column data
+In list_detail.html
+  - change the column head
+  - add/delete column data
 
 Execute   python manage.py makemigrations sims102
           python manage.py migrate sims102 
 
-Go to admin and add the 'Index Manager' of index102 to the (dept) group involved.
+Go to admin 
+  - add the 'Index Manager' of index102 to the (dept) group involved.
+  - enter deparment, index_name, and description of index102 
 
 If adding a new department, 
   - create a new group 'depttwo' (group name for the department)

@@ -1,13 +1,56 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="">
-        <h2> {{ object.data_one }}</h2>
-        <p> {{ object.data_two }} </p>
-        <p> {{ object.calculated_value }} </p>
+
+
+
+    <div class="container-fluid">
+        <table class="table">
+            <tr class="row">
+                <td class="col-xs-4 col-sm-3 text-center">Department: </td>
+                <td class="col-xs-4 col-sm-3 text-center">{{ object.department }} </td>
+            </tr> 
+            <tr class="row">
+                <td class="col-xs-4 col-sm-3 text-center">Index: </td>
+                <td class="col-xs-4 col-sm-3 text-center">{{ object.department }} </td>
+            </tr>
+            <tr class="row">
+                <td class="col-xs-3 col-sm-2 text-center">Description: </td>
+                <td class="col-xs-9 col-sm-10 text-center">{{ object.description|linebreaks }} </td>
+            <!--   ## [[{{ post.body|truncatewords:30|linebreaks }}  linebreaks filter replaces line breaks in plain text with appropriate HTML; a single newline becomes an HTML line break (<br>) and a new line followed by a blank line becomes a paragraph break (</p>). ]] -->
+            </tr>
+        </table>
+        <table class="table">
+            <thead>
+                <tr class="row">
+                    <th class="col-xs-3 col-sm-2 text-center">Data1</th>
+                    <th class="col-xs-3 col-sm-2 text-center">Data2</th>
+                    <th class="col-xs-3 col-sm-2 text-center">Index123</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row">
+                    <td class="col-xs-3 col-sm-2 text-center">{{ object.data_one }}</td>
+                    <td class="col-xs-3 col-sm-2 text-center">{{ object.data_two }}</td>
+                    <td class="col-xs-3 col-sm-2 text-center">{{ object.calculated_value }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-borderless">
+            <tbody>
+                <tr class ="row">
+                    <td class="col-xs-3 "><a href="{% url 'sims101:index_update' object.pk %}" class="btn btn-detail btn-primary "> Edit </a> </td>
+                    <td class="col-xs-3 "><a href="{% url 'sims101:index_delete' object.pk %}" class="btn btn-detail btn-danger "> Delete</a> </td>
+                    <td class="col-xs-3 mr-auto"><a href="{% url 'sims101:index_list' %}" class="btn btn-detail btn-info "> Go to list</a> </td>
+                </tr>
+            </tbody> 
+        </table> 
     </div>
 
-    <p><a href="{% url 'sims101:index_update' object.pk %}"> +Edit Index Data </a></p>
-    <p><a href="{% url 'sims101:index_delete' object.pk %}"> +Delete Index Data </a></p>
-    <p><a href="{% url 'sims101:index_list'  %}"> +Go back to the list </a></p>
+
+
+
+
+
+
 
 {% endblock content %}

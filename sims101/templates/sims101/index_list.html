@@ -1,21 +1,40 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <a href="{% url 'sims101:index_create' %}">+ Add new index data</a> 
 
-    {% for index in object_list %}
-        <div >
-            <a href="{% url 'sims101:index_detail' index.id %}">{{ index.data_one }}</a>
-            <a href="{% url 'sims101:index_detail' index.id %}">{{ index.data_two }}</a> 
-            <a href="{% url 'sims101:index_detail' index.id %}">{{ index.calculated_value }} </a>
-        </div>
-    {% endfor %}
-
-    <p><a href="{% url 'home'  %}"> +Go back to Home </a></p>
+ <div class="container-fluid">
+    <table class="table">
+        <thead>
+            <tr class="row">
+                <th class="col-xs-3 col-sm-2 text-center">Data1</th>
+                <th class="col-xs-3 col-sm-2 text-center">Data2</th>
+                <th class="col-xs-3 col-sm-2 text-center">Index123</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for index in object_list %}
+                <tr class="row">
+                    <td class="col-xs-3 col-sm-2 text-center"><a href="{% url 'sims101:index_detail' index.id %}">{{ index.data_one }}</a></td>
+                    <td class="col-xs-3 col-sm-2 text-center"><a href="{% url 'sims101:index_detail' index.id %}">{{ index.data_two }}</a> </td>
+                    <td class="col-xs-3 col-sm-2 text-center"><a href="{% url 'sims101:index_detail' index.id %}">{{ index.calculated_value }} </a> </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <table class="table table-borderless">
+        <tbody>
+            <tr class ="row">
+                <td class="col-xs-6 "><a href="{% url 'sims101:index_create' %}" class="btn btn-primary "> Add new data </a> </td>
+                <td class="col-xs-6 mr-auto"><a href="{% url 'home' %}" class="btn btn-secondary "> Go home </a> </td>
+            </tr>
+        </tbody> 
+    </table> 
+</div>
 
 {% endblock content %}
 {% block pagination %}
   {% if is_paginated %}
+    <div class="container-fluid"> 
       <div class="pagination">
           <span class="page-links">
               {% if page_obj.has_previous %}
@@ -31,6 +50,7 @@
               {% endif %}
           </span>
       </div>
+    </div>
   {% endif %}
 {% endblock pagination %} 
 
