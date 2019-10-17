@@ -9,3 +9,7 @@ for each new index (index102)
 
 Need to create new app to create the Description Table..
 다른 App의 model을  index101, 102.. 에서 조회할 수 있나? 
+
+    Just import it like any other python class.
+    So in your activity app you'd do something like this:
+    from sync.models import SyncJob
