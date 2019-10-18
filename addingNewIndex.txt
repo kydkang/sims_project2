@@ -5,17 +5,16 @@ Change the folder name to sims102
 In settings.py, add 'sims102' to INSTALLED_APPS
 
 In urls.py (project-level), add path('102/', include('sim102.urls')) 
-In urls.py (app-level), change app_name to sims102
-in apps.py, change the name in apps.py
+In urls.py (app-level of sims102), change app_name to sims102
+in apps.py, change the name 
 In admin.py, change to Index102
 
 In models.py,  
   - create a new model 'index102'
-  - change department, index_name, and description
 
 In views.py, change
   - from .models import Index102
-  - permission > sims102. ... 
+  - permission > sims102.   ... 
   - model = Index102
   - template_name = 'sims102/ .... '
 
@@ -28,12 +27,14 @@ In list_detail.html
   - change the column head
   - add/delete column data
 
-Execute   python manage.py makemigrations sims102
-          python manage.py migrate sims102 
+In forms.py
+  - Index102
 
 Go to admin 
-  - add the 'Index Manager' of index102 to the (dept) group involved.
-  - enter deparment, index_name, and description of index102 
+  - create a new record for the description table (sequence, index_name, description, ...)
+
+Execute   python manage.py makemigrations sims102
+          python manage.py migrate sims102 
 
 If adding a new department, 
   - create a new group 'depttwo' (group name for the department)

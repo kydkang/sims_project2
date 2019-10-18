@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'sims101', 
     'sims102', 
     'crispy_forms', 
+    'commons', 
 ]
 
 MIDDLEWARE = [

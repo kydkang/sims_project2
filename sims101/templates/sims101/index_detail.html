@@ -1,22 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
-
     <div class="container-fluid">
         <table class="table">
             <tr class="row">
-                <td class="col-xs-4 col-sm-3 text-center">Department: </td>
-                <td class="col-xs-4 col-sm-3 text-center">{{ object.department }} </td>
+                <td class="col-xs-3 col-sm-2 text-left">Department: </td>
+                <td class="col-xs-4 col-sm-3 text-left">{{ object.description.department }} </td>
             </tr> 
             <tr class="row">
-                <td class="col-xs-4 col-sm-3 text-center">Index: </td>
-                <td class="col-xs-4 col-sm-3 text-center">{{ object.department }} </td>
+                <td class="col-xs-3 col-sm-2 text-left">Index: </td>
+                <td class="col-xs-4 col-sm-3 text-left">{{ object.description.index_name }} </td>
             </tr>
             <tr class="row">
-                <td class="col-xs-3 col-sm-2 text-center">Description: </td>
-                <td class="col-xs-9 col-sm-10 text-center">{{ object.description|linebreaks }} </td>
-            <!--   ## [[{{ post.body|truncatewords:30|linebreaks }}  linebreaks filter replaces line breaks in plain text with appropriate HTML; a single newline becomes an HTML line break (<br>) and a new line followed by a blank line becomes a paragraph break (</p>). ]] -->
+                <td class="col-xs-3 col-sm-2 text-left">Description: </td>
+                <td class="col-xs-8 col-sm-9 text-left">{{ object.description.description|linebreaks }} </td>
             </tr>
         </table>
         <table class="table">
