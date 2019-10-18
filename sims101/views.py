@@ -15,7 +15,7 @@ class IndexListView(PermissionRequiredMixin, ListView):
 class IndexDetailView(PermissionRequiredMixin, DetailView):
     permission_required = ('sims101.index_manager') 
     model = Index101
-    template_name = 'sims101/index_detail.html' ### default context name is 'object'. 
+    template_name = 'sims101/index_detail.html' 
 
 class IndexCreateView(PermissionRequiredMixin, CreateView):
     permission_required = ('sims101.index_manager') 

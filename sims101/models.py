@@ -23,7 +23,6 @@ class Index101(models.Model):
     def save(self, *args, **kwargs):
         self.calculated_value =  self.calculate() 
         self.description = Description.objects.get(sequence=self.SEQUENCE)
-        print(self.description) 
         super(Index101, self).save(*args, **kwargs)
 
     def __str__(self):
