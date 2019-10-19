@@ -26,7 +26,7 @@ class Index101(models.Model):
         super(Index101, self).save(*args, **kwargs)
 
     def __str__(self):
-        return str(self.data_one) + "   " + str(self.data_two)
+        return str(self.data_one) + "--" + str(self.data_two)
 
     def get_absolute_url(self):
         # or  return reverse('sims101:index_detail', args=[str(self.id)])

@@ -3,6 +3,21 @@
 
 
  <div class="container-fluid">
+
+    <table class="table">
+        <tr class="row">
+            <td class="col-xs-3 col-sm-2 text-left">Department: </td>
+            <td class="col-xs-4 col-sm-3 text-left">{{ first.description.department }} </td>
+        </tr> 
+        <tr class="row">
+            <td class="col-xs-3 col-sm-2 text-left">Index: </td>
+            <td class="col-xs-4 col-sm-3 text-left">{{ first.description.index_name }} </td>
+        </tr>
+        <tr class="row">
+            <td class="col-xs-3 col-sm-2 text-left">Description: </td>
+            <td class="col-xs-8 col-sm-9 text-left">{{ first.description.description|linebreaks }} </td>
+        </tr>
+    </table>    
     <table class="table">
         <thead>
             <tr class="row">
@@ -14,13 +29,16 @@
         <tbody>
             {% for index in object_list %}
                 <tr class="row">
-                    <td class="col-xs-3 col-sm-2 text-center"><a href="{% url 'sims101:index_detail' index.id %}">{{ index.data_one }}</a></td>
-                    <td class="col-xs-3 col-sm-2 text-center"><a href="{% url 'sims101:index_detail' index.id %}">{{ index.data_two }}</a> </td>
-                    <td class="col-xs-3 col-sm-2 text-center"><a href="{% url 'sims101:index_detail' index.id %}">{{ index.calculated_value }} </a> </td>
+                    <td class="col-xs-3 col-sm-2 text-center">{{ index.data_one }}</td>
+                    <td class="col-xs-3 col-sm-2 text-center">{{ index.data_two }}</td>
+                    <td class="col-xs-3 col-sm-2 text-center">{{ index.calculated_value }}</td>
+                    <td class="col-xs-3 col-sm-2"><a href="{% url 'sims101:index_update' index.id %}" class="btn btn-detail btn-primary btn-sm"> Edit </a> </td>
+                    <td class="col-xs-3 col-sm-2"><a href="{% url 'sims101:index_delete' index.id %}" class="btn btn-detail btn-info btn-sm"> Delete</a> </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+
     <table class="table table-borderless">
         <tbody>
             <tr class ="row">

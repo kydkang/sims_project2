@@ -1,2 +1,9 @@
 
-Homepage using CARD bootstrap >> watch udemy
+
+
+edit / delete button location 적절한가? 
+
+
+Template 통합 
+
+bootstrap   col-lg-4  then col-md-6  then  col-sm-12 (or 없어도 됨)

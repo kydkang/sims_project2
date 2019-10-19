@@ -12,6 +12,12 @@ class IndexListView(PermissionRequiredMixin, ListView):
     template_name = 'sims101/index_list.html'   ### default context name is 'object_list'. To change it, enter context_object_name = 'posts'
     paginate_by = 3       ## 3 objects per page 
 
+    def get_context_data(self, **kwargs):
+        context = super(IndexListView, self).get_context_data(**kwargs)
+        first = Index101.objects.first()     ### get the first object 
+        context['first'] = first
+        return context
+
 class IndexDetailView(PermissionRequiredMixin, DetailView):
     permission_required = ('sims101.index_manager') 
     model = Index101
@@ -23,6 +29,7 @@ class IndexCreateView(PermissionRequiredMixin, CreateView):
     form_class = IndexForm 
     template_name = 'sims101/index_create.html'
     login_url = 'login'
+    success_url = reverse_lazy('sims101:index_list')  
     ### CreateView, UpdateView에 success_url을 제공하지 않는 경우, 해당 model instance의 get_absolute_url 주소로 이동이 가능한지 체크한다 by Django ]]
 
 class IndexUpdateView(PermissionRequiredMixin, UpdateView):
@@ -30,6 +37,7 @@ class IndexUpdateView(PermissionRequiredMixin, UpdateView):
     model = Index101
     form_class = IndexForm
     template_name = 'sims101/index_update.html'
+    success_url = reverse_lazy('sims101:index_list')  
 
 class IndexDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = ('sims101.index_manager')    

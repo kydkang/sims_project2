@@ -5,19 +5,49 @@
         <p class="lead">Set of indexes used in SNGRE</p>
 </div>
  -->
-    {% if user.is_authenticated %}
-        <p class="mt-3"> Hi, {{ user.username }} </p> 
-        <li class="list-group-item"><a href="101/"> SIMS 101 </a> </li>
-        <li class="list-group-item"><a href="102/"> IMS 102 </a> </li>
-        <a href="{% url 'logout' %}" class="btn btn-primary mt-3"> logout </a> 
-    {% else %}
-        <p class="mt-3"> You are not logged in </p>
-        <a href="{% url 'login' %}" class="btn btn-info mt-3 home-btn"> login </a>
-        {% comment %}
-        <a href="{% url 'register' %}" class="btn btn-info mt-3 home-btn"> register </a>
-        {% endcomment %}
-    {% endif %}
+
+<div class="card-deck mt-4" >
+    <div class="card">
+      <h5 class="card-header">Gestión de la Información </h5>
+      <div class="card-body">
+        <p class="card-text"> Augue nibh eu non nam aliquam aenean, sit in arcu phasellus laboris. Amet ligula metus.</p>
+        {% if user.is_authenticated %}
+        <li class="list-group-item"><a href="101/"> IndexName101 </a> </li>
+        <li class="list-group-item"><a href="102/"> IndexName102 </a> </li>
+        {% endif %}
+      </div>
+    </div>
+    <div class="card">
+      <h5 class="card-header">Análisis de Riesgos</h5>
+      <div class="card-body">
+        <p class="card-text"> Fermentum mi cras, adipiscing erat massa maecenas est, ullamcorper morbi. Augue nibh eu non nam aliquam aenean, sit in arcu phasellus laboris. Amet ligula metus.</p>
+        {% if user.is_authenticated %}
+            <li class="list-group-item"><a href="101/"> IndexNameABC </a> </li>
+            <li class="list-group-item"><a href="102/"> IndexNameXYZ </a> </li>
+        {% endif %}
+      </div>
+    </div>
+    <div class="card">
+      <h5 class="card-header">Asistencia Humanitaria</h5>
+      <div class="card-body">
+        <p class="card-text">Augue nibh eu non nam aliquam aenean, sit in arcu phasellus laboris. Amet ligula metus.</p>
+        {% if user.is_authenticated %}
+            <li class="list-group-item"><a href="101/"> IndexName777 </a> </li>
+        {% endif %}
+      </div>
+    </div>
+
 </div>
 
+  {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}" class="btn btn-primary mt-3"> logout </a> 
+  {% else %}
+    <a href="{% url 'login' %}" class="btn btn-info mt-3 home-btn"> login </a>
+    {% comment %}
+    <a href="{% url 'register' %}" class="btn btn-info mt-3 home-btn"> register </a>
+    {% endcomment %}
+  {% endif %}
+
 {% endblock content %}
+
 
