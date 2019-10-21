@@ -4,13 +4,13 @@ body {
     /* background-color: lightblue;  */
 }
 
-.home-btn {
-    width:140px; 
-}
-
-.btn-detail {
+.btn-custom {
     width:100px;
     padding:5px;
+}
+
+.btn-editdelete {
+    width:80px;
 }
 
 .btn-primary,
