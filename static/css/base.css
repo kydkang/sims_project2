@@ -22,8 +22,6 @@ body {
     border-color: #334CFF;
 }
 
-
-
 .btn-info,
 .btn-info:hover,
 .btn-info:active,
@@ -31,4 +29,10 @@ body {
 .btn-info:focus {
     background-color: #236622;
     border-color: #236622;
+}
+
+/* give space between rows in a table */
+.login-table {   
+    border-collapse:separate;
+    border-spacing:0 20px;
 }

@@ -21,10 +21,10 @@ In views.py, change
 In templates folder, change the subfolder name to sims102 
 In each file in templates/sims102 folder, 
    - change to {% url 'sims102: .... %} 
-In index_list.html, 
+In index_list.html
    - change column head name
    - add/delete column data
-In list_detail.html
+In index_detail.html
   - change the column head
   - add/delete column data
 
