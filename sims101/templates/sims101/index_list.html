@@ -4,18 +4,18 @@
 
  <div class="container-fluid">
 
-    <table class="table">
+    <table class="table mt-4">
         <tr class="row">
-            <td class="col-sm-2 col-xs-3 text-left">Department: </td>
-            <td class="col-sm-10 col-xs-9 text-left">{{ first.description.department }} </td>
+            <td class="col-sm-3  text-left ">Department: </td>
+            <td class="col-sm-9 text-left">{{ first.description.department }} </td>
         </tr> 
         <tr class="row">
-            <td class="col-sm-2 col-xs-3 text-left">Index: </td>
-            <td class="col-sm-10 col-xs-9 text-left">{{ first.description.index_name }} </td>
+            <td class="col-sm-3  text-left">Index: </td>
+            <td class="col-sm-9  text-left">{{ first.description.index_name }} </td>
         </tr>
         <tr class="row">
-            <td class="col-sm-2 col-xs-3 text-left">Description: </td>
-            <td class="col-sm-10 col-xs-9 text-left">{{ first.description.description|linebreaks }} </td>
+            <td class="col-sm-3 text-left">Description: </td>
+            <td class="col-sm-9  text-left">{{ first.description.description|linebreaks }} </td>
         </tr>
     </table>   
     
@@ -32,8 +32,8 @@
                     <td class="col-sm-2 text-center">{{ index.data_two }}</td>
                     <td class="col-sm-2 text-center">{{ index.calculated_value }}</td>
                     <td></td>
-                    <td class="col-lg-1 col-sm-2"><a href="{% url 'sims101:index_update' index.id %}" class="btn btn-sm btn-outline-primary btn-editdelete "> Edit </a> </td>
-                    <td class="col-lg-1 col-sm-2"><a href="{% url 'sims101:index_delete' index.id %}" class="btn btn-sm btn-outline-info btn-editdelete"> Delete</a> </td>
+                    <td class="col-sm-4 "><a href="{% url 'sims101:index_update' index.id %}" class="btn btn-sm btn-outline-primary btn-editdelete "> Edit </a> 
+                  <a href="{% url 'sims101:index_delete' index.id %}" class="btn btn-sm btn-outline-info btn-editdelete"> Delete</a> </td>
                 </tr>
             {% endfor %}
     </table>
@@ -49,61 +49,43 @@
 </div>
 
 {% endblock content %}
+
 {% block pagination %}
-  {% if is_paginated %}
+    {% if is_paginated %}
     <div class="container-fluid"> 
-      <div class="pagination">
-          <span class="page-links" id="page-links" data-page-links="{% url  'sims101:ajax_change_session' %}">
-              {% if page_obj.has_previous %}
-                  <a href="{{ request.path }}?page={{ page_obj.start_index }}"> first </a>
-                  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}"> previous </a>
-              {% endif %}
-              <span class="page-current">
-                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-              </span>
-              {% if page_obj.has_next %}
-                  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}"> next </a>
-
-                  <a href="{{ request.path }}?page={{ page_obj.paginator.num_pages }}" > last </a>
-
-              {% endif %}
-          </span>
-      </div>
+        <ul class="pagination" id="page-links" data-page-links="{% url 'sims101:ajax_change_session' %}">
+            {% if page_obj.has_previous %}
+                <li class="mr-2"><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled mr-2"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in paginator.page_range %}
+                {% if page_obj.number == i %}
+                    <li class="active mr-2"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                    <li class="mr-2"><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <li class="mr-2"><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled mr-2"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
     </div>
-  {% endif %}
+    {% endif %}
 
   <script>
-
-
-
-    alert( {{ request.session.created }} ); 
-
-
-        // $(document).ready(function () {  // always execute this function to update the dropdown // $ is a shortcut for jQuery
         if ( {{ request.session.created }} ) {
-            
-
             var url = $("#page-links").attr("data-page-links");   
-            alert(url);
             $.ajax({
                 url: url,
                 data: {
                 },
                 success: function (data) { }
             }); 
-            alert("HHHH");
             window.location.href = "{{ request.path }}?page={{ page_obj.paginator.num_pages }}"; 
-
-
         }; 
-
-        // and ({{ page_obj.number }} !== {{ page_obj.paginator.num_pages }}) {
-        //     alert("HIkkkk");
-        //     request.session.created = ""; 
-        //     window.location.href = "{{ request.path }}?page={{ page_obj.paginator.num_pages }}"; 
-        // }
-        
-
   </script>  
     
 {% endblock pagination %} 
