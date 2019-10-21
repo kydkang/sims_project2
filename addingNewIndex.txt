@@ -7,24 +7,23 @@ In settings.py, add 'sims102' to INSTALLED_APPS
 In urls.py (project-level), add path('102/', include('sim102.urls')) 
 In urls.py (app-level of sims102), change app_name to sims102
 in apps.py, change the name 
-In admin.py, change to Index102
-
+In admin.py, 
+  - 101 > 102
 In models.py,  
-  - create a new model 'index102'
+  - 101 > 102 
+  - modify data fields
+  - modify functions (calculate, __str__)
 
 In views.py, change
-  - from .models import Index102
-  - permission > sims102.   ... 
-  - model = Index102
-  - template_name = 'sims102/ .... '
+  - 101 > 102 
 
 In templates folder, change the subfolder name to sims102 
-In each file in templates/sims102 folder, 
-   - change to {% url 'sims102: .... %} 
 In index_list.html
-   - change column head name
-   - add/delete column data
+  - 101 > 102
+  - change column head name
+  - add/delete column data
 In index_detail.html
+  - 101 > 102 
   - change the column head
   - add/delete column data
 
@@ -33,6 +32,8 @@ In forms.py
 
 Execute   python manage.py makemigrations sims102
           python manage.py migrate sims102 
+
+python manage.py runserver
 
 Go to 127.0.0.1/admin 
   - create a new record for the description table (sequence, index_name, description, ...)

@@ -9,6 +9,7 @@ urlpatterns = [
     path('account/', include('account.urls')), 
     path('101/', include('sims101.urls')),    
     path('102/', include('sims102.urls')),   
+    path('103/', include('sims103.urls')), 
 
 ]
 

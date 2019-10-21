@@ -7,7 +7,15 @@
     <table class="table mt-4">
         <tr class="row">
             <td class="col-sm-3  text-left ">Department: </td>
-            <td class="col-sm-9 text-left">{{ first.description.department }} </td>
+            <td class="col-sm-9 text-left"> 
+                    {% if first %}
+                        {{ first.description.department }}
+                    {% else %}
+                        {{ description.department}}
+                    {% endif %}
+            </td>
+
+
         </tr> 
         <tr class="row">
             <td class="col-sm-3  text-left">Index: </td>
@@ -32,8 +40,8 @@
                     <td class="col-sm-2 text-center">{{ index.data_two }}</td>
                     <td class="col-sm-2 text-center">{{ index.calculated_value }}</td>
                     <td></td>
-                    <td class="col-sm-4 "><a href="{% url 'sims101:index_update' index.id %}" class="btn btn-sm btn-outline-primary btn-editdelete "> Edit </a> 
-                  <a href="{% url 'sims101:index_delete' index.id %}" class="btn btn-sm btn-outline-info btn-editdelete"> Delete</a> </td>
+                    <td class="col-sm-4 "><a href="{% url 'sims103:index_update' index.id %}" class="btn btn-sm btn-outline-primary btn-editdelete "> Edit </a> 
+                  <a href="{% url 'sims103:index_delete' index.id %}" class="btn btn-sm btn-outline-info btn-editdelete"> Delete</a> </td>
                 </tr>
             {% endfor %}
     </table>
@@ -41,7 +49,7 @@
     <table class="table table-borderless">
         <tbody>
             <tr class ="row">
-                <td class="col-xs-4 "><a href="{% url 'sims101:index_create' %}" class="btn btn-primary btn-custom "> Add  </a> </td>
+                <td class="col-xs-4 "><a href="{% url 'sims103:index_create' %}" class="btn btn-primary btn-custom "> Add  </a> </td>
                 <td class="col-xs-4 mr-auto"><a href="{% url 'home' %}" class="btn btn-secondary btn-custom "> Go home </a> </td>
             </tr>
         </tbody> 
@@ -53,7 +61,7 @@
 {% block pagination %}
     {% if is_paginated %}
     <div class="container-fluid"> 
-        <ul class="pagination" id="page-links" data-page-links="{% url 'sims101:ajax_change_session' %}">
+        <ul class="pagination" id="page-links" data-page-links="{% url 'sims103:ajax_change_session' %}">
             {% if page_obj.has_previous %}
                 <li class="mr-2"><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
             {% else %}
@@ -76,17 +84,27 @@
     {% endif %}
 
   <script>
-        if ( {{ request.session.created }} ) {   // reset the 'create' value to false 
-            var url = $("#page-links").attr("data-page-links");   
-            $.ajax({
-                url: url,
-                data: {
-                },
-                success: function (data) { }
-            }); 
-            window.location.href = "{{ request.path }}?page={{ page_obj.paginator.num_pages }}"; // redirect
+        alert("after if"); 
+           if (page_obj.paginator.num_page != page_object.number) {
+                window.location.href = "{{ request.path }}?page={{ page_obj.paginator.num_pages }}"; // redirect
+                alert("inside")
+           };
+           alert("after if"); 
+
+        // if ( {{ request.session.created }} ) {  
+        //     var url = $("#page-links").attr("data-page-links");   
+        //     alert(url); 
+        //     $.ajax({
+        //         url: url,
+        //         data: {
+        //         },
+        //         success: function (data) { 
+        //             window.location.href = "{{ request.path }}?page={{ page_obj.paginator.num_pages }}"; // redirect
+        //         }
+        //     }); 
            
-        }; 
+
+        // }; 
   </script>  
     
 {% endblock pagination %} 

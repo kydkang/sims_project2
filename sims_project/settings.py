@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sims101', 
     'sims102', 
+    'sims103', 
     'crispy_forms', 
     'commons', 
 ]
