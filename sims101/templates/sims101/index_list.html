@@ -82,10 +82,10 @@
                 url: url,
                 data: {
                 },
-                success: function (data) { }
+                success: function (data) { 
+                }
             }); 
             window.location.href = "{{ request.path }}?page={{ page_obj.paginator.num_pages }}"; // redirect
-           
         }; 
   </script>  
     

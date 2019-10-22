@@ -14,16 +14,26 @@
                         {{ description.department}}
                     {% endif %}
             </td>
-
-
         </tr> 
         <tr class="row">
             <td class="col-sm-3  text-left">Index: </td>
-            <td class="col-sm-9  text-left">{{ first.description.index_name }} </td>
+            <td class="col-sm-9  text-left">
+                    {% if first %}
+                        {{ first.description.index_name }}
+                    {% else %}
+                        {{ description.index_name}}
+                    {% endif %}
+            </td>
         </tr>
         <tr class="row">
             <td class="col-sm-3 text-left">Description: </td>
-            <td class="col-sm-9  text-left">{{ first.description.description|linebreaks }} </td>
+            <td class="col-sm-9  text-left">
+                    {% if first %}
+                        {{ first.description.description|linebreaks}}
+                    {% else %}
+                        {{ description.description|linebreaks}}
+                    {% endif %}
+            </td>                
         </tr>
     </table>   
     
@@ -84,27 +94,17 @@
     {% endif %}
 
   <script>
-        alert("after if"); 
-           if (page_obj.paginator.num_page != page_object.number) {
-                window.location.href = "{{ request.path }}?page={{ page_obj.paginator.num_pages }}"; // redirect
-                alert("inside")
-           };
-           alert("after if"); 
-
-        // if ( {{ request.session.created }} ) {  
-        //     var url = $("#page-links").attr("data-page-links");   
-        //     alert(url); 
-        //     $.ajax({
-        //         url: url,
-        //         data: {
-        //         },
-        //         success: function (data) { 
-        //             window.location.href = "{{ request.path }}?page={{ page_obj.paginator.num_pages }}"; // redirect
-        //         }
-        //     }); 
-           
-
-        // }; 
+        if ( {{ request.session.created }} ) {   // reset the 'create' value to false 
+            var url = $("#page-links").attr("data-page-links");   
+            $.ajax({
+                url: url,
+                data: {
+                },
+                success: function (data) { 
+                }
+            }); 
+            window.location.href = "{{ request.path }}?page={{ page_obj.paginator.num_pages }}"; // redirect
+        }; 
   </script>  
     
 {% endblock pagination %} 
