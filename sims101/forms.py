@@ -10,3 +10,16 @@ class IndexForm(forms.ModelForm):
         widgets = {
             'calculated_value': forms.TextInput(attrs={'readonly': 'readonly'}),
         }
+
+
+    # def __init__(self, *args, **kwargs):
+    #     self.user = kwargs.pop('user')
+    #     super(BookCreateForm, self).__init__(*args, **kwargs)
+
+    # def clean_title(self):
+    #     title = self.cleaned_data['title']
+    #     if Book.objects.filter(user=self.user, title=title).exists():
+    #         raise forms.ValidationError("You have already written a book with same title.")
+    #     return title
+
+clean function에서 rerouting to last page ... if created 이면.... 

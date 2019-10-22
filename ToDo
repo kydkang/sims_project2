@@ -9,6 +9,8 @@ create / delete / update 템플릿들이 번역되어 나오는지 확인하기
 
 changepassword/done   logout  템플릿들이 번역되어 나오는지 확인
 
+*****  session 변수를  def get_form_kwargs(self):로 변경하기 
+
 데모
 - Git 커밋하기 
 - locale, fixtures 삭제  랭귀지를 en으로 변경하기 

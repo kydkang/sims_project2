@@ -37,6 +37,12 @@ class IndexCreateView(PermissionRequiredMixin, CreateView):
         super().setup(request, *args, **kwargs)
         if request.session._session:
             request.session['created'] = "true"
+
+    # def get_form_kwargs(self, *args, **kwargs):
+    #     kwargs = super(IndexCreateView, self).get_form_kwargs(*args, **kwargs)
+    #     kwargs['created'] = "true"
+    #     return kwargs
+
             
 from django.shortcuts import render
 def ajax_change_session(request):  
