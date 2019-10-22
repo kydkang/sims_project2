@@ -14,11 +14,10 @@ class IndexListView(PermissionRequiredMixin, ListView):
     paginate_by = 3       ## 3 objects per page 
 
     def get_context_data(self, **kwargs):   ### get the first object to be used in the index_list.html 
-        context = super(IndexListView, self).get_context_data(**kwargs)
-        first = Index101.objects.first()     
-        context['first'] = first
+        context = super(IndexListView, self).get_context_data(**kwargs) 
+        context['first'] = Index101.objects.first()  
+        context['description'] = Description.objects.get(sequence=Index101.SEQUENCE)
         return context
-
 
 class IndexDetailView(PermissionRequiredMixin, DetailView):
     permission_required = ('sims101.index_manager') 

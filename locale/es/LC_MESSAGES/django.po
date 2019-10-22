@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-16 13:15-0500\n"
+"POT-Creation-Date: 2019-10-22 11:15-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,30 +18,111 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\account\templates\registration\login.html:30
+#: .\account\forms.py:6
+msgid "Password"
+msgstr "Contraseña"
+
+#: .\account\forms.py:7
+msgid "Repeat password"
+msgstr "Repite la contraseña"
+
+#: .\account\templates\registration\logged_out.html:7
+msgid "You have been successfully logged out.  You can "
+msgstr "Ha sido desconectado exitosamente. Puede"
+
+#: .\account\templates\registration\logged_out.html:8
+msgid "log-in again."
+msgstr "ingresar de nuevo."
+
+#: .\account\templates\registration\login.html:6
 msgid "Log-in"
 msgstr ""
 
-#: .\account\templates\registration\login.html:35
+#: .\account\templates\registration\login.html:23
 msgid "Your username and password didn't match. Please try again."
 msgstr "Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo."
 
-#: .\sims101\models.py:10
+#: .\account\templates\registration\password_change_done.html:6
+msgid "Password changed"
+msgstr ""
+
+#: .\account\templates\registration\password_change_done.html:7
+msgid "Your password has been successfully changed."
+msgstr ""
+
+#: .\account\templates\registration\password_change_form.html:4
+#: .\account\templates\registration\password_change_form.html:6
+msgid "Change your password"
+msgstr "Cambia su contraseña"
+
+#: .\account\templates\registration\password_change_form.html:7
+msgid "Use the form below to change your password."
+msgstr "Use el siguiente formulario para cambiar su contraseña."
+
+#: .\account\templates\registration\password_change_form.html:10
+msgid "Change"
+msgstr "Cambiar"
+
+#: .\commons\models.py:24
+msgid "sequence"
+msgstr "secuencia"
+
+#: .\commons\models.py:25
+msgid "department"
+msgstr "dirección"
+
+#: .\commons\models.py:26
+msgid "index name"
+msgstr "nombre de índice"
+
+#: .\commons\models.py:27
+msgid "description"
+msgstr "descripción"
+
+#: .\sims101\models.py:9 .\sims103\models.py:9
 msgid "data one"
 msgstr "dato uno"
 
-#: .\sims101\models.py:11
+#: .\sims101\models.py:10 .\sims103\models.py:10
 msgid "data two"
 msgstr "dato dos"
 
-#: .\sims101\models.py:12
+#: .\sims101\models.py:11 .\sims103\models.py:11
 msgid "calculated value"
 msgstr "valor calculado"
 
-#: .\sims_project\settings.py:121
+#: .\sims101\templates\sims101\index_list.html:9
+msgid "Department:"
+msgstr "Dirección:"
+
+#: .\sims101\templates\sims101\index_list.html:19
+msgid "Index:"
+msgstr "Índice:"
+
+#: .\sims101\templates\sims101\index_list.html:29
+msgid "Description:"
+msgstr "Descripción:"
+
+#: .\sims_project\settings.py:122
 msgid "English"
 msgstr "Inglés"
 
-#: .\sims_project\settings.py:122
+#: .\sims_project\settings.py:123
 msgid "Spanish"
 msgstr "Español"
+
+#: .\templates\base.html:38
+msgid "Change Password"
+msgstr "Cambiar contraseña"
+
+#: .\templates\base.html:39
+msgid "Logout"
+msgstr ""
+
+#: .\templates\base.html:45
+msgid "Log in"
+msgstr ""
+
+#: .\templates\signup.html:11
+msgid "Sign up"
+msgstr "Registrar"

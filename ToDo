@@ -1,3 +1,17 @@
 
 Description Table CRUD views
 
+<< 그전에 {% blocktrans %}를 사용해서 그냥 통으로 번영이 되는지 먼저 테스트해보기 >>  
+Sign Up 템플릿을  Login 템플릿 처럼 풀어 쓰기 
+   그리고 translation 추가하기  
+
+create / delete / update 템플릿들이 번역되어 나오는지 확인하기 
+
+changepassword/done   logout  템플릿들이 번역되어 나오는지 확인
+
+데모
+- Git 커밋하기 
+- locale, fixtures 삭제  랭귀지를 en으로 변경하기 
+- ToDo 삭제하기   
+
+

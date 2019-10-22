@@ -1,0 +1,35 @@
+[[ How to create translations ]] - dj2ByExCh9
+
+1. Mark the English phrases as follows: 
+from django.utils.translation import gettext_lazy as _
+output = _('Text to be translated.')
+
+2. Execute the following command from your project root directory:
+    - django-admin makemessages --all   
+
+3. In the file in locale/es/LC_MESSAGES/django.po
+    - enter the translation for each word
+    - delete the line   #, fuzzy
+
+4. Execute the following command from your project root directory: 
+    - django-admin compilemessages 
+
+To see the translation, in settings.py 
+    - change the LANGUAGE_CODE to 'es'
+    - comment out 'django.middleware.locale.LocaleMiddleware'
+
+For models, 
+    - add name (or verbose_name attribute) to the fields, e.g., 
+        first_name = models.CharField(_('first name'), max_length=50)
+
+For templates, 
+    - add {% load i18n %} at the top 
+    - enclose the word >>   {% trans "Text to be translated" %}
+    - for translation for variables 
+        {% blocktrans %} Hello {{ name }}! {% endblocktrans %}
+
+For forms, 
+    - add label parameter in the form field definition. e.g., 
+        quantity = forms.TypedChoiceField(
+                                    choices=PRODUCT_QUANTITY_CHOICES,
+                                    label=_('Quantity'))
