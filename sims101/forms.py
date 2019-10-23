@@ -13,13 +13,16 @@ class IndexForm(forms.ModelForm):
 
 
     # def __init__(self, *args, **kwargs):
-    #     self.user = kwargs.pop('user')
+    #     self.created = kwargs.pop('created')
     #     super(BookCreateForm, self).__init__(*args, **kwargs)
 
     # def clean_title(self):
+        # if self.created == "true"
+        #     self.create = "false"
+
     #     title = self.cleaned_data['title']
     #     if Book.objects.filter(user=self.user, title=title).exists():
     #         raise forms.ValidationError("You have already written a book with same title.")
     #     return title
 
-clean function에서 rerouting to last page ... if created 이면.... 
+# clean function에서 rerouting to last page ... if created 이면.... 

@@ -35,8 +35,8 @@ class IndexCreateView(PermissionRequiredMixin, CreateView):
 
     def setup(self, request, *args, **kwargs): 
         super().setup(request, *args, **kwargs)
-        if request.session._session:
-            request.session['created'] = "true"
+        request.session['created'] = "true"
+        request.session.modified = True
 
     # def get_form_kwargs(self, *args, **kwargs):
     #     kwargs = super(IndexCreateView, self).get_form_kwargs(*args, **kwargs)
@@ -47,6 +47,7 @@ class IndexCreateView(PermissionRequiredMixin, CreateView):
 from django.shortcuts import render
 def ajax_change_session(request):  
     request.session['created'] = ""
+    request.session.modified = True
     return render(request, 'sims101/index_delete.html') 
 
 

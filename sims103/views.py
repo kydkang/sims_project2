@@ -36,12 +36,13 @@ class IndexCreateView(PermissionRequiredMixin, CreateView):
 
     def setup(self, request, *args, **kwargs): 
         super().setup(request, *args, **kwargs)
-        if request.session._session:
-            request.session['created'] = "true"
+        request.session['created'] = "true"
+        request.session.modified = True
             
 from django.shortcuts import render
 def ajax_change_session(request):  
     request.session['created'] = ""
+    request.session.modified = True
     return render(request, 'sims103/index_delete.html') 
 
 

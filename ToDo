@@ -17,3 +17,5 @@ changepassword/done   logout  템플릿들이 번역되어 나오는지 확인
 - ToDo 삭제하기   
 
 
+clear session in other view functions
+

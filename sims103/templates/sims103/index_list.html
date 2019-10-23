@@ -93,9 +93,10 @@
     </div>
     {% endif %}
 
-  <script>
+    <script>
         if ( {{ request.session.created }} ) {   // reset the 'create' value to false 
             var url = $("#page-links").attr("data-page-links");   
+            alert("created is true")
             $.ajax({
                 url: url,
                 data: {
@@ -103,8 +104,9 @@
                 success: function (data) { 
                 }
             }); 
+            alert("after ajax")
             window.location.href = "{{ request.path }}?page={{ page_obj.paginator.num_pages }}"; // redirect
         }; 
-  </script>  
+    </script>  
     
 {% endblock pagination %} 
