@@ -13,7 +13,8 @@ class Index101(models.Model):
  
     class Meta:
         permissions = [
-            ("index_manager", "Index Manager"), 
+            ("index-contributor", "index-contributor"), 
+            ("index-validator",   "index-validator"), 
         ]
         ordering = ['id'] 
 

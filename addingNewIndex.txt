@@ -38,10 +38,19 @@ python manage.py runserver
 Go to 127.0.0.1/admin 
   - create a new record for the description table (sequence, index_name, description, ...)
 
-If adding a new department, 
-  - create a new group 'depttwo' (group name for the department)
-  - add the permission 'Index Manager' of index102 app to the new group 
-  - create a user and add the user to the 'depttwo' group 
+If adding a new department (depttwo), 
+  - create 2 new groups : depttwo-contributor and depttwo-validator 
 
-If adding a new user to use all the indexes of depttwo, 
-  - create a user and add the user to the depttwo group 
+If adding a new index(index102) to a existing department(depttwo) 
+  - add the permission 'index-contributor' of index102 to the depttwo-contributor group
+  - add the permission 'index-contributor' and 'index-validator' of index102 to the depttwo-validator group
+
+If adding a new user to depttwo, 
+  - create a user, and add either depttwo-contributor or depttwo-validator to the user 
+
+[[  Each view has different permission assigned 
+    - createView, listView, detailView >> index-contributor 
+    - deleteView, updateView  >>  index-validator 
+]] 
+
+For admin, create a superuser (python manage.py createsuperuser) 

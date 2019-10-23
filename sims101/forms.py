@@ -13,16 +13,13 @@ class IndexForm(forms.ModelForm):
 
 
     # def __init__(self, *args, **kwargs):
-    #     self.created = kwargs.pop('created')
+    #     self.created = kwargs.pop('user')  << set in get_form_kwargs in CreateView
     #     super(BookCreateForm, self).__init__(*args, **kwargs)
 
-    # def clean_title(self):
-        # if self.created == "true"
-        #     self.create = "false"
-
+    # def clean_title(self):    << check the book is unique per user(author) 
     #     title = self.cleaned_data['title']
     #     if Book.objects.filter(user=self.user, title=title).exists():
     #         raise forms.ValidationError("You have already written a book with same title.")
     #     return title
 
-# clean function에서 rerouting to last page ... if created 이면.... 
+   

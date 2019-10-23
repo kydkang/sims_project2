@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block content %}
-
 
  <div class="container-fluid">
 
-    <table class="table mt-4">
+    <table class="table mt-4">     
         <tr class="row">
-            <td class="col-sm-3  text-left ">Department: </td>
+            <td class="col-sm-3  text-left "> {% trans "Department:" %} </td>
             <td class="col-sm-9 text-left"> 
                     {% if first %}
                         {{ first.description.department }}
@@ -16,7 +16,7 @@
             </td>
         </tr> 
         <tr class="row">
-            <td class="col-sm-3  text-left">Index: </td>
+            <td class="col-sm-3  text-left"> {% trans "Index:" %} </td>
             <td class="col-sm-9  text-left">
                     {% if first %}
                         {{ first.description.index_name }}
@@ -26,7 +26,7 @@
             </td>
         </tr>
         <tr class="row">
-            <td class="col-sm-3 text-left">Description: </td>
+            <td class="col-sm-3 text-left"> {% trans "Description:" %} </td>
             <td class="col-sm-9  text-left">
                     {% if first %}
                         {{ first.description.description|linebreaks}}
@@ -35,7 +35,7 @@
                     {% endif %}
             </td>                
         </tr>
-    </table>   
+    </table>  
     
     <table class="table">
 
@@ -71,7 +71,7 @@
 {% block pagination %}
     {% if is_paginated %}
     <div class="container-fluid"> 
-        <ul class="pagination" id="page-links" data-page-links="{% url 'sims103:ajax_change_session' %}">
+        <ul class="pagination">
             {% if page_obj.has_previous %}
                 <li class="mr-2"><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
             {% else %}
@@ -93,20 +93,20 @@
     </div>
     {% endif %}
 
-    <script>
+  <script>
         if ( {{ request.session.created }} ) {   // reset the 'create' value to false 
-            var url = $("#page-links").attr("data-page-links");   
-            alert("created is true")
+            // var url = $("#page-links").attr("data-page-links");   
+            var url = "/103/ajax/change_session/"
+            alert(url);                //    /103/ajax/change_session/
             $.ajax({
                 url: url,
-                data: {
-                },
+                data: {},
                 success: function (data) { 
                 }
             }); 
-            alert("after ajax")
+            alert("after ajax333");
             window.location.href = "{{ request.path }}?page={{ page_obj.paginator.num_pages }}"; // redirect
         }; 
-    </script>  
+  </script>  
     
 {% endblock pagination %} 

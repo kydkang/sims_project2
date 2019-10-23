@@ -12,9 +12,13 @@ changepassword/done   logout  템플릿들이 번역되어 나오는지 확인
 *****  session 변수를  def get_form_kwargs(self):로 변경하기 
 
 데모
-- Git 커밋하기 
-- locale, fixtures 삭제  랭귀지를 en으로 변경하기 
-- ToDo 삭제하기   
+- Git 배포용.커밋하기 
+- locale, fixtures 삭제  
+- 셋업.py에서 랭귀지를 en으로 변경하기 
+- ToDo 삭제하기 
+- in account/urls.py  패스워드체인지 두 개 지우기 
+- admin 권한 가진 user 생성 (admin , admin) 
+
 
 
 clear session in other view functions

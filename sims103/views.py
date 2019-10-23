@@ -38,13 +38,25 @@ class IndexCreateView(PermissionRequiredMixin, CreateView):
         super().setup(request, *args, **kwargs)
         request.session['created'] = "true"
         request.session.modified = True
+
+#     for CreateView and UpdateView, you can use form_valid for additional settings.
+#     def form_valid(self, form):
+#         form.instance.author = self.request.user 
+#         return super().form_valid(form) 
+
+    # Return the keyword arguments for instantiating the form.
+    # def get_form_kwargs(self, *args, **kwargs):
+    #     kwargs = super(IndexCreateView, self).get_form_kwargs(*args, **kwargs)
+    #     kwargs['created'] = "true"
+    #     return kwargs
+
             
 from django.shortcuts import render
 def ajax_change_session(request):  
+    print("inside ajax function333")
     request.session['created'] = ""
     request.session.modified = True
     return render(request, 'sims103/index_delete.html') 
-
 
 class IndexUpdateView(PermissionRequiredMixin, UpdateView):
     permission_required = ('sims103.index_manager') 
@@ -73,20 +85,4 @@ class IndexDeleteView(PermissionRequiredMixin, DeleteView):
 #         return super().form_valid(form) 
 
 
-    # # Initialize attributes shared by all view methods.
-    # def setup(self, request, *args, **kwargs): 
-    #     super().setup(request, *args, **kwargs)
-    #     # get the Area objects using object ids passed by session 
-    #     # this list will be sent to the template by the get_context_data() below
-    #     if request.session._session:
-    #         self.areas = [Area.objects.get(id=id) for id in request.session['affected_areas']] 
-
-    # # Insert the area list  into the context dict.
-    # def get_context_data(self, **kwargs):
-    #     context = super(InformeDetailView, self).get_context_data(**kwargs)
-    #     for example  self.kwargs['pk']   # pk is from the url 
-
-    #     if request.session._session:
-    #         context['areaset'] = self.areas
-    #     return context
 

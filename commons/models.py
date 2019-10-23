@@ -22,7 +22,7 @@ class Description(models.Model):
     )
 
     sequence = models.CharField(_('sequence'), max_length=3, choices=SEQ_CHOICES) 
-    department = models.CharField(_('department'), max_length=5, choices=DEPT_CHOICES)
+    department = models.CharField(_('department'), max_length=100, choices=DEPT_CHOICES)
     index_name = models.CharField(_('index name'), max_length=50)
     description = models.TextField(_('description'),) 
 
