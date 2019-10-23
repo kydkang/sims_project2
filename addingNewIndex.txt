@@ -38,19 +38,24 @@ python manage.py runserver
 Go to 127.0.0.1/admin 
   - create a new record for the description table (sequence, index_name, description, ...)
 
+<< Roles and Permissions >> 
+
 If adding a new department (depttwo), 
   - create 2 new groups : depttwo-contributor and depttwo-validator 
+  [[ Groups are created for each department. ]]
 
-If adding a new index(index102) to a existing department(depttwo) 
+If adding a new index(index102) to an existing department(depttwo) 
   - add the permission 'index-contributor' of index102 to the depttwo-contributor group
   - add the permission 'index-contributor' and 'index-validator' of index102 to the depttwo-validator group
 
 If adding a new user to depttwo, 
-  - create a user, and add either depttwo-contributor or depttwo-validator to the user 
+  - create a user, and add either depttwo-contributor or depttwo-validator to the user based on its role 
 
 [[  Each view has different permission assigned 
     - createView, listView, detailView >> index-contributor 
     - deleteView, updateView  >>  index-validator 
+    [[ contributer can only create/list/viewdetail]]
+    [[ validator can create/list/viewdetail/delete/update ]]
 ]] 
 
 For admin, create a superuser (python manage.py createsuperuser) 
