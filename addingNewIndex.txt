@@ -1,5 +1,8 @@
 [[ Adding sims102 app ]] 
+
 Add a link ('102/') in home.html 
+  - to add a new department, you need to create a new card tag first. 
+
 Copy sims101 and paste it at the same level
 Change the folder name to sims102
 In settings.py, add 'sims102' to INSTALLED_APPS
@@ -37,6 +40,7 @@ python manage.py runserver
 
 Go to 127.0.0.1/admin 
   - create a new record for the description table (sequence, index_name, description, ...)
+    : select SEQUENCE value used in models.py (e.g., 102)
 
 << Roles and Permissions >> 
 

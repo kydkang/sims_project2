@@ -11,7 +11,7 @@ class IndexListView(PermissionRequiredMixin, ListView):
     permission_required = ('sims101.index-contributor') 
     model = Index101                      ###  Or,   queryset = Post.objects.all()
     template_name = 'sims101/index_list.html'   ### default context name is 'object_list'. To change it, enter context_object_name = 'posts'
-    paginate_by = 3       ## 3 objects per page 
+    # paginate_by = 3       ## 3 objects per page 
 
     def get_context_data(self, **kwargs):   ### get the first object to be used in the index_list.html 
         context = super(IndexListView, self).get_context_data(**kwargs) 

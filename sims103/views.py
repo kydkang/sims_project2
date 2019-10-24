@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from .models import Index103
 from .forms import IndexForm 
 from commons.models import Description
-
+from django.shortcuts import get_object_or_404
 
 class IndexListView(PermissionRequiredMixin, ListView):
     permission_required = ('sims103.index_manager') 
@@ -15,8 +15,9 @@ class IndexListView(PermissionRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):   ### get the first object to be used in the index_list.html 
         context = super(IndexListView, self).get_context_data(**kwargs) 
-        context['first'] = Index103.objects.first()  
-        context['description'] = Description.objects.get(sequence=Index103.SEQUENCE)
+        context['first'] = Index103.objects.first() 
+        context['description'] = get_object_or_404(Description, sequence=Index103.SEQUENCE)
+        # context['description'] = Description.objects.get_object_or_404(sequence=Index103.SEQUENCE)
         return context
 
 

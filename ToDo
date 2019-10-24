@@ -1,25 +1,31 @@
 
 Description Table CRUD views
 
+Add 기능을  ListView 밑에 넣기.... 
+
+** 'Calculate' ajax 기능 추가 
+
 << 그전에 {% blocktrans %}를 사용해서 그냥 통으로 번역이 되는지 먼저 테스트해보기 >>  
 Sign Up 템플릿을  Login 템플릿 처럼 풀어 쓰기 
-   그리고 translation 추가하기  
-
+    그리고 translation 추가하기  
 create / delete / update 템플릿들이 번역되어 나오는지 확인하기 
-
 changepassword/done   logout  템플릿들이 번역되어 나오는지 확인
 
-*****  session 변수를  def get_form_kwargs(self):로 변경하기 
+
+Git docu
+로그인막기
+사용메뉴얼
+오퍼레이터메뉴얼
+비교 generics vs functions
+
 
 데모
 - Git 배포용.커밋하기 
 - locale, fixtures 삭제  
 - 셋업.py에서 랭귀지를 en으로 변경하기 
 - ToDo 삭제하기 
-- in account/urls.py  패스워드체인지 두 개 지우기 
 - admin 권한 가진 user 생성 (admin , admin) 
-
-
-
-clear session in other view functions
-
+- 리스트html 맨밑 페이지섹션 코멘트아웃.되어있음
+- 리스트뷰에서 paginate_by 코멘트아웃.되어있음
+- 레지스터 코멘트아웃되어있음 (홈.베이스) 
+- 패스워드체인지 코멘트아웃되어있음(홈))
