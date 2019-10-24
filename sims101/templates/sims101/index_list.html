@@ -80,16 +80,13 @@
             <div class="col-3">
                 {{ form.data_two|as_crispy_field }}
             </div>
-            {% comment %}
-            <div class="col-3">
+            <div class="col-3" id="final_value">
                 {{ form.calculated_value|as_crispy_field }}
             </div>
-            {% endcomment %}
         </div>
         <input class="mt-3 btn btn-outline-primary" type="submit" value="Save" />
-        
+        <button class="mt-3 btn btn-outline-primary" id="calcuate-button" type="button" value="Calculate" />
     </form>
-
 </div>
 
 {% endblock content %}
@@ -124,7 +121,6 @@
   <script>
       // $(document).ready(function () {  // always execute this function to update the dropdown // $ is a shortcut for jQuery
 
-
         if ( {{ request.session.created }} ) {   // reset the 'create' value to false 
             // put the following in any html tag  id="page-links" data-page-links="{% url 'sims101:ajax_change_session' %}
             // var url = $("#page-links").attr("data-page-links");   
@@ -138,6 +134,24 @@
             }); 
             window.location.href = "{{ request.path }}?page={{ page_obj.paginator.num_pages }}"; // redirect
         }; 
+    $(document).ready(function () {
+        $("#calcuate-button").click(function () {      alert("Hi");          // $ is a shortcut for jQuery
+        // var url = $("#informeForm").attr("data-satimages-url");  // get the url of the `load_cities` view
+        var url = "/101/ajax/calculate/";  // get the selected event ID from the HTML input
+        var first_data = $("id_data_one").val();  alert("Hi");
+        var second_data = $("id_data_two").val();  alert(second_data); 
+        $.ajax({                // initialize an AJAX request
+          url: url,              // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+          data: {
+              'first_data': first_data, 
+              'second_data': second_data, 
+          },
+          success: function (data) {   // `data` is the return value of the `load_cities` view function
+            $("#final_value").html(data);   // replace the contents of dropdown list 
+          }
+        });
+      });
+    });
   </script>  
     
 {% endblock pagination %} 

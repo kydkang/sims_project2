@@ -10,6 +10,7 @@ urlpatterns = [
     path('data/<int:pk>/update', views.IndexUpdateView.as_view(), name='index_update'),
     path('data/<int:pk>/delete', views.IndexDeleteView.as_view(), name='index_delete'), 
     path('ajax/change_session/', views.ajax_change_session, name='ajax_change_session'),  
+    path('ajax/calculate/', views.ajax_calculate, name='ajax_calculate'), 
 
 ]
 
