@@ -24,14 +24,16 @@ In templates folder, change the subfolder name to sims102
 In index_list.html
   - 101 > 102
   - change column head name
-  - add/delete column data
+  - change data name 
+  - change column data
 In index_detail.html
   - 101 > 102 
   - change the column head
-  - add/delete column data
+  - change column data
 
 In forms.py
   - Index102
+  - change fields
 
 Execute   python manage.py makemigrations sims102
           python manage.py migrate sims102 
@@ -60,6 +62,18 @@ If adding a new user to depttwo,
     - deleteView, updateView  >>  index-validator 
     [[ contributer can only create/list/viewdetail]]
     [[ validator can create/list/viewdetail/delete/update ]]
+]] 
+
+For admin, create a superuser (python manage.py createsuperuser) 
+
+
+
+If adding a new user to depttwo, 
+  - create a user, and add either depttwo-contributor or depttwo-validator to the user based on its role 
+
+[[  Each view has different permission assigned 
+    - index-contributor can only create/list/detail (createView, listView, detailView)  
+    - index-validator can do all create/list/detail/delete/update (createView, listView, detailView, deleteView, updateView)  
 ]] 
 
 For admin, create a superuser (python manage.py createsuperuser) 

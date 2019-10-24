@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load crispy_forms_tags %}
 {% block content %}
 
  <div class="container-fluid">
@@ -56,6 +57,7 @@
             {% endfor %}
     </table>
 
+{% comment %} 
     <table class="table table-borderless">
         <tbody>
             <tr class ="row">
@@ -64,12 +66,36 @@
             </tr>
         </tbody> 
     </table> 
+{% endcomment %}
+
+    <h6> New Index Data </h6>
+    {{ form.non_field_errors }}
+    <form action="{% url 'sims101:index_create' %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            {{ form.non_field_errors }}
+            <div class="col-3">
+                {{ form.data_one|as_crispy_field }}
+            </div>
+            <div class="col-3">
+                {{ form.data_two|as_crispy_field }}
+            </div>
+            {% comment %}
+            <div class="col-3">
+                {{ form.calculated_value|as_crispy_field }}
+            </div>
+            {% endcomment %}
+        </div>
+        <input class="mt-3 btn btn-outline-primary" type="submit" value="Save" />
+        
+    </form>
+
 </div>
 
 {% endblock content %}
 
-{% comment %}
 
+{% comment %}
 {% block pagination %}
     {% if is_paginated %}
     <div class="container-fluid"> 
@@ -96,6 +122,9 @@
     {% endif %}
 
   <script>
+      // $(document).ready(function () {  // always execute this function to update the dropdown // $ is a shortcut for jQuery
+
+
         if ( {{ request.session.created }} ) {   // reset the 'create' value to false 
             // put the following in any html tag  id="page-links" data-page-links="{% url 'sims101:ajax_change_session' %}
             // var url = $("#page-links").attr("data-page-links");   

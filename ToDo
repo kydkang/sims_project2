@@ -23,9 +23,9 @@ Git docu
 - Git 배포용.커밋하기 
 - locale, fixtures 삭제  
 - 셋업.py에서 랭귀지를 en으로 변경하기 
-- ToDo 삭제하기 
+- ToDo, To-Operator 삭제하기 
 - admin 권한 가진 user 생성 (admin , admin) 
 - 리스트html 맨밑 페이지섹션 코멘트아웃.되어있음
 - 리스트뷰에서 paginate_by 코멘트아웃.되어있음
-- 레지스터 코멘트아웃되어있음 (홈.베이스) 
+- 등록레지스터 코멘트아웃되어있음 (홈.베이스) 
 - 패스워드체인지 코멘트아웃되어있음(홈))

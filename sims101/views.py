@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from .models import Index101
 from .forms import IndexForm 
 from commons.models import Description
+from django.http import HttpResponseRedirect
 
 
 class IndexListView(PermissionRequiredMixin, ListView):
@@ -17,6 +18,9 @@ class IndexListView(PermissionRequiredMixin, ListView):
         context = super(IndexListView, self).get_context_data(**kwargs) 
         context['first'] = Index101.objects.first()  
         context['description'] = Description.objects.get(sequence=Index101.SEQUENCE)
+        if not ('form' in context):
+            context['form'] = IndexForm()
+
         return context
 
 class IndexDetailView(PermissionRequiredMixin, DetailView):
@@ -31,7 +35,19 @@ class IndexCreateView(PermissionRequiredMixin, CreateView):
     template_name = 'sims101/index_create.html'
     login_url = 'login'
     success_url = reverse_lazy('sims101:index_list')  
-    ### CreateView, UpdateView에 success_url을 제공하지 않는 경우, 해당 model instance의 get_absolute_url 주소로 이동이 가능한지 체크한다 by Django ]]
+
+    def form_invalid(self, form):  
+#This works if not using the pagination.... 
+        first = Index101.objects.first()  
+        description = Description.objects.get(sequence=Index101.SEQUENCE)  
+        object_list = Index101.objects.all()  
+        context = {'first':first, 'description':description, 'form':form, 'object_list':object_list} 
+        return render(self.request, 'sims101/index_list.html', context)
+
+        # return HttpResponseRedirect('/101/')
+
+    ### CreateView, UpdateView에 success_url을 제공하지 않는 경우, 
+    # 해당 model instance의 get_absolute_url 주소로 이동이 가능한지 체크한다 by Django ]]
 
     def setup(self, request, *args, **kwargs): 
         super().setup(request, *args, **kwargs)
@@ -48,8 +64,9 @@ class IndexCreateView(PermissionRequiredMixin, CreateView):
 from django.shortcuts import render
 def ajax_change_session(request):  
     request.session['created'] = ""
-    request.session.modified = True
     return render(request, 'sims101/index_delete.html') 
+
+
 
 class IndexUpdateView(PermissionRequiredMixin, UpdateView):
     permission_required = ('sims101.index-validator') 

@@ -1,0 +1,6 @@
+
+To use Add button & pagination 
+- delete form_invalid() from IndexCreateView
+- Uncomment pagination section in index_list.html
+- Uncomment buttons in index_list.html 
+- Uncomment paginated_by=3  in IndexListView()  
