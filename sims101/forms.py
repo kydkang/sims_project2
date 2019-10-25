@@ -5,6 +5,9 @@ class IndexForm(forms.ModelForm):
     class Meta:
         model = Index101
         fields = ['data_one', 'data_two', 'calculated_value']
+    #     labels = {
+    #     "calculated_value": "Calculated"
+    # }
         calculated_value = forms.CharField(disabled=True) 
         
         widgets = {

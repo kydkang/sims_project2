@@ -1,15 +1,9 @@
 
 Description Table CRUD views
 
-Add 기능을  ListView 밑에 넣기.... 
+ListView를 function view로 바꾸기 + pagination 
 
-** 'Calculate' ajax 기능 추가 
-
-Edit / Delete 버튼을 Contributor에게는 숨기기 
-
-Introduction to class-based-view
-
-doc으로 정리리하기 :: To manually randering form fields ::  https://overiq.com/django-1-11/django-rendering-form-fields-manually/  
+doc으로 정리하기 :: To manually randering form fields ::  https://overiq.com/django-1-11/django-rendering-form-fields-manually/  
 
 
 << 그전에 {% blocktrans %}를 사용해서 그냥 통으로 번역이 되는지 먼저 테스트해보기 >>  

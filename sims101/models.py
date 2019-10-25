@@ -8,7 +8,7 @@ class Index101(models.Model):
     description = models.ForeignKey(Description, on_delete=models.CASCADE) 
     data_one = models.IntegerField(_('data one'), )
     data_two = models.DecimalField(_('data two'), max_digits=5, decimal_places=2)
-    calculated_value = models.CharField(_('calculated value'), max_length=32, blank=True, )
+    calculated_value = models.CharField(_('calculated'), max_length=32, blank=True, )
     # to make a field not visible in admin, use  editable=False
  
     class Meta:

@@ -51,8 +51,12 @@
                     <td class="col-sm-2 text-center">{{ index.data_two }}</td>
                     <td class="col-sm-2 text-center">{{ index.calculated_value }}</td>
                     <td></td>
-                    <td class="col-sm-4 "><a href="{% url 'sims101:index_update' index.id %}" class="btn btn-sm btn-outline-primary btn-editdelete "> Edit </a> 
-                  <a href="{% url 'sims101:index_delete' index.id %}" class="btn btn-sm btn-outline-info btn-editdelete"> Delete</a> </td>
+                    {% if 'sims101.index-validator' in perms %}
+                        <td class="col-sm-4 ">
+                            <a href="{% url 'sims101:index_update' index.id %}" class="btn btn-sm btn-outline-primary btn-editdelete "> Edit </a> 
+                            <a href="{% url 'sims101:index_delete' index.id %}" class="btn btn-sm btn-outline-info btn-editdelete"> Delete</a> 
+                        </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
     </table>
@@ -84,18 +88,17 @@
                 {{ form.calculated_value|as_crispy_field }}
             </div>
         </div>
-        <input class="mt-3 btn btn-outline-primary" type="submit" value="Save" />
-        <button class="mt-3 btn btn-outline-primary" id="calculate-button" type="button"> Calculate </button>
+        <input class="mt-3 btn btn-custom btn-outline-primary mr-4" type="submit" value="Save" />
+        <button class="mt-3 btn btn-custom btn-outline-primary" id="calculate-button" type="button"> Calculate </button>
     </form>
 </div>
 
 <script>
       $("#calculate-button").click(function () {               // $ is a shortcut for jQuery
-      alert("Hi"); 
       // var url = $("#informeForm").attr("data-satimages-url");  // get the url of the `load_cities` view
       var url = "/101/ajax/calculate/";  // get the selected event ID from the HTML input
-      var first_data = $("#id_data_one").val();  alert("Hi");
-      var second_data = $("#id_data_two").val();  alert(second_data); 
+      var first_data = $("#id_data_one").val(); 
+      var second_data = $("#id_data_two").val();  
       $.ajax({                // initialize an AJAX request
         url: url,              // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
         data: {
@@ -113,6 +116,7 @@
 
 
 {% comment %}
+
 {% block pagination %}
     {% if is_paginated %}
     <div class="container-fluid"> 
@@ -139,8 +143,6 @@
     {% endif %}
 
   <script>
-      // $(document).ready(function () {  // always execute this function to update the dropdown // $ is a shortcut for jQuery
-        alert("Hi-first"); 
         if ( {{ request.session.created }} ) {   // reset the 'create' value to false 
             var url = "/101/ajax/change_session/" 
             $.ajax({
@@ -152,25 +154,6 @@
             }); 
             window.location.href = "{{ request.path }}?page={{ page_obj.paginator.num_pages }}"; // redirect
         }; 
-
-        $("#calculate-button").click(function () {               // $ is a shortcut for jQuery
-        alert("Hi"); 
-        // var url = $("#informeForm").attr("data-satimages-url");  // get the url of the `load_cities` view
-        var url = "/101/ajax/calculate/";  // get the selected event ID from the HTML input
-        var first_data = $("id_data_one").val();  alert("Hi");
-        var second_data = $("id_data_two").val();  alert(second_data); 
-        $.ajax({                // initialize an AJAX request
-          url: url,              // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
-          data: {
-              'first_data': first_data, 
-              'second_data': second_data, 
-          },
-          success: function (data) {   // `data` is the return value of the `load_cities` view function
-            $("#final_value").html(data);   // replace the contents of dropdown list 
-          }
-        });
-      });
-
   </script>  
     
 {% endblock pagination %} 
