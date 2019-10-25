@@ -74,7 +74,7 @@
 
     <h6> New Index Data </h6>
     {{ form.non_field_errors }}
-    <form action="{% url 'sims101:index_create' %}" method="POST">
+    <form action="{% url 'sims101:index_list' %}" method="POST">
         {% csrf_token %}
         <div class="row">
             {{ form.non_field_errors }}
@@ -112,37 +112,7 @@
     });
 </script>  
 
-{% endblock content %}
-
-
-{% comment %}
-
-{% block pagination %}
-    {% if is_paginated %}
-    <div class="container-fluid"> 
-        <ul class="pagination" >
-            {% if page_obj.has_previous %}
-                <li class="mr-2"><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
-            {% else %}
-                <li class="disabled mr-2"><span>&laquo;</span></li>
-            {% endif %}
-            {% for i in paginator.page_range %}
-                {% if page_obj.number == i %}
-                    <li class="active mr-2"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                {% else %}
-                    <li class="mr-2"><a href="?page={{ i }}">{{ i }}</a></li>
-                {% endif %}
-            {% endfor %}
-            {% if page_obj.has_next %}
-                <li class="mr-2"><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
-            {% else %}
-                <li class="disabled mr-2"><span>&raquo;</span></li>
-            {% endif %}
-        </ul>
-    </div>
-    {% endif %}
-
-  <script>
+<script>
         if ( {{ request.session.created }} ) {   // reset the 'create' value to false 
             var url = "/101/ajax/change_session/" 
             $.ajax({
@@ -152,10 +122,41 @@
                 success: function (data) { 
                 }
             }); 
-            window.location.href = "{{ request.path }}?page={{ page_obj.paginator.num_pages }}"; // redirect
+            window.location.href = "{{ request.path }}?page={{ object_list.paginator.num_pages }}"; // redirect
         }; 
   </script>  
+
+{% endblock content %}
+
+
+{% comment %}
+
+{% block pagination %}
+    <div class="container-fluid"> 
+        <ul class="pagination" >
+            {% if object_list.has_previous %}
+                <li class="mr-2"><a href="?page={{ object_list.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled mr-2"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in object_list.paginator.page_range %}
+                {% if object_list.number == i %}
+                    <li class="active mr-2"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                    <li class="mr-2"><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if object_list.has_next %}
+                <li class="mr-2"><a href="?page={{ object_list.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled mr-2"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+    </div>
     
 {% endblock pagination %} 
 
 {% endcomment %}
+
+
+
