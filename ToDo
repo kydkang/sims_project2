@@ -5,6 +5,9 @@ Add 기능을  ListView 밑에 넣기....
 
 ** 'Calculate' ajax 기능 추가 
 
+Edit / Delete 버튼을 Contributor에게는 숨기기 
+
+
 << 그전에 {% blocktrans %}를 사용해서 그냥 통으로 번역이 되는지 먼저 테스트해보기 >>  
 Sign Up 템플릿을  Login 템플릿 처럼 풀어 쓰기 
     그리고 translation 추가하기  

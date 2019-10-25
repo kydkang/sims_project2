@@ -67,9 +67,10 @@ def ajax_change_session(request):
     return render(request, 'sims101/index_delete.html') 
 
 def ajax_calculate(request):
+    print("In ajax calculate")
     first_data = request.GET.get('first_data')
     second_data = request.GET.get('second_data')
-    final_value = first_data * second_data   ###  same as defined in model.py 
+    final_value = int(first_data) * int(second_data)   ###  same as defined in model.py 
     return render(request, 'sims101/final_value.html', {'final_value':final_value})
 
 
