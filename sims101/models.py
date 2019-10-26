@@ -13,8 +13,8 @@ class Index101(models.Model):
  
     class Meta:
         permissions = [
-            ("index-contributor", "index-contributor"), 
-            ("index-validator",   "index-validator"), 
+            ("index_contributor", "index_contributor"), 
+            ("index_validator",   "index_validator"), 
         ]
         ordering = ['id'] 
 
@@ -29,9 +29,9 @@ class Index101(models.Model):
     def __str__(self):
         return str(self.data_one) + "--" + str(self.data_two)
 
-    def get_absolute_url(self):
-        # or  return reverse('sims101:index_detail', args=[str(self.id)])
-        return reverse('sims101:index_detail', kwargs={'pk': str(self.id)})
+    # def get_absolute_url(self):
+    #     # or  return reverse('sims101:index_detail', args=[str(self.id)])
+    #     return reverse('sims101:index_detail', kwargs={'pk': str(self.id)})
 
 
 

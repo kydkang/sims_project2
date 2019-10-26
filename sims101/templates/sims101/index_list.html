@@ -3,43 +3,30 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
- <div class="container-fluid">
+<div class="container-fluid">
 
     <table class="table mt-4">     
         <tr class="row">
             <td class="col-sm-3  text-left "> {% trans "Department:" %} </td>
             <td class="col-sm-9 text-left"> 
-                    {% if first %}
-                        {{ first.description.department }}
-                    {% else %}
-                        {{ description.department}}
-                    {% endif %}
+                    {% if first %} {{ first.description.department }} {% else %} {{ description.department}} {% endif %}
             </td>
         </tr> 
         <tr class="row">
             <td class="col-sm-3  text-left"> {% trans "Index:" %} </td>
             <td class="col-sm-9  text-left">
-                    {% if first %}
-                        {{ first.description.index_name }}
-                    {% else %}
-                        {{ description.index_name}}
-                    {% endif %}
+                    {% if first %} {{ first.description.index_name }} {% else %}{{ description.index_name}} {% endif %}
             </td>
         </tr>
         <tr class="row">
             <td class="col-sm-3 text-left"> {% trans "Description:" %} </td>
             <td class="col-sm-9  text-left">
-                    {% if first %}
-                        {{ first.description.description|linebreaks}}
-                    {% else %}
-                        {{ description.description|linebreaks}}
-                    {% endif %}
+                    {% if first %} {{ first.description.description|linebreaks}} {% else %} {{ description.description|linebreaks}} {% endif %}
             </td>                
         </tr>
     </table>  
     
     <table class="table">
-
             <tr class="row">
                 <th class="col-sm-2 text-center">Data1</th>
                 <th class="col-sm-2 text-center">Data2</th>
@@ -51,26 +38,15 @@
                     <td class="col-sm-2 text-center">{{ index.data_two }}</td>
                     <td class="col-sm-2 text-center">{{ index.calculated_value }}</td>
                     <td></td>
-                    {% if 'sims101.index-validator' in perms %}
+                    {% if 'sims101.index_validator' in perms %}
                         <td class="col-sm-4 ">
                             <a href="{% url 'sims101:index_update' index.id %}" class="btn btn-sm btn-outline-primary btn-editdelete "> Edit </a> 
-                            <a href="{% url 'sims101:index_delete' index.id %}" class="btn btn-sm btn-outline-info btn-editdelete"> Delete</a> 
+                            <a href="{% url 'sims101:index_delete' index.id %}" class="btn btn-sm btn-outline-danger btn-editdelete"> Delete</a> 
                         </td>
                     {% endif %}
                 </tr>
             {% endfor %}
     </table>
-
-{% comment %} 
-    <table class="table table-borderless">
-        <tbody>
-            <tr class ="row">
-                <td class="col-xs-4 "><a href="{% url 'sims101:index_create' %}" class="btn btn-primary btn-custom "> Add  </a> </td>
-                <td class="col-xs-4 mr-auto"><a href="{% url 'home' %}" class="btn btn-secondary btn-custom "> Go home </a> </td>
-            </tr>
-        </tbody> 
-    </table> 
-{% endcomment %}
 
     <h6> New Index Data </h6>
     {{ form.non_field_errors }}
@@ -78,15 +54,9 @@
         {% csrf_token %}
         <div class="row">
             {{ form.non_field_errors }}
-            <div class="col-3">
-                {{ form.data_one|as_crispy_field }}
-            </div>
-            <div class="col-3">
-                {{ form.data_two|as_crispy_field }}
-            </div>
-            <div class="col-3" id="final_value">
-                {{ form.calculated_value|as_crispy_field }}
-            </div>
+            <div class="col-3"> {{ form.data_one|as_crispy_field }} </div>
+            <div class="col-3"> {{ form.data_two|as_crispy_field }} </div>
+            <div class="col-3" id="final_value"> {{ form.calculated_value|as_crispy_field }} </div>
         </div>
         <input class="mt-3 btn btn-custom btn-outline-primary mr-4" type="submit" value="Save" />
         <button class="mt-3 btn btn-custom btn-outline-primary" id="calculate-button" type="button"> Calculate </button>
@@ -113,18 +83,18 @@
 </script>  
 
 <script>
-        if ( {{ request.session.created }} ) {   // reset the 'create' value to false 
-            var url = "/101/ajax/change_session/" 
-            $.ajax({
-                url: url,
-                data: {
-                },
-                success: function (data) { 
-                }
-            }); 
-            window.location.href = "{{ request.path }}?page={{ object_list.paginator.num_pages }}"; // redirect
-        }; 
-  </script>  
+    if ( {{ request.session.created }} ) {   // reset the 'create' value to false 
+        var url = "/101/ajax/change_session/" 
+        $.ajax({
+            url: url,
+            data: {
+            },
+            success: function (data) { 
+            }
+        }); 
+        window.location.href = "{{ request.path }}?page={{ object_list.paginator.num_pages }}"; // redirect
+    }; 
+</script>  
 
 {% endblock content %}
 

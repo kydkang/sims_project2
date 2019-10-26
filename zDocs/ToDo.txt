@@ -1,7 +1,7 @@
 
 git document 사용법 공부하기 
 
-permission_required = ('sims101.index-contributor')  << listView에 구현하기
+value one 이 너무 큰 경우 Integer Too Large 에러 발생 
 
 deleteView 새로운 화면으로 가지 않고, 그냥 확인 메시지만 보여준 다음 지우기 
 
@@ -24,14 +24,9 @@ changepassword/done   logout  템플릿들이 번역되어 나오는지 확인
 비교 generics vs functions
 
 
-데모 준비 
-- Git 배포용.커밋하기 
-- locale, fixtures 삭제  
+Deploy 준비 
 - 셋업.py에서 랭귀지를 en으로 변경하기 
-- zDocs 폴더 삭제하기 
-- admin 권한 가진 user 생성 (admin , admin) 
-- 리스트html 맨밑 페이지섹션 코멘트아웃.되어있음
-- 리스트뷰에서 paginate_by 코멘트아웃.되어있음
+- user 생성 (admin, admin), (contributor, contributor) (validator, validator) 
 - 등록레지스터 코멘트아웃되어있음 (홈.베이스) 
 - 패스워드체인지 코멘트아웃되어있음(홈))
 - pagination 작동 정지되어 있음.  작동시키려면   

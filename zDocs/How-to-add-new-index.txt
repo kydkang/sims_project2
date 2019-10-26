@@ -21,15 +21,12 @@ In views.py, change
   - 101 > 102 
 
 In templates folder, change the subfolder name to sims102 
+
 In index_list.html
   - 101 > 102
   - change column head name
-  - change data name 
-  - change column data
-In index_detail.html
-  - 101 > 102 
-  - change the column head
-  - change column data
+  - change column data 
+  - in script, change form field name 
 
 In forms.py
   - Index102
@@ -47,12 +44,12 @@ Go to 127.0.0.1/admin
 << Roles and Permissions >> 
 
 If adding a new department (depttwo), 
-  - create 2 new groups : depttwo-contributor and depttwo-validator 
+  - create 2 new groups : depttwo_contributor and depttwo_validator 
     (Two groups are created for each department.)
 
 If adding a new index(index102) to an existing department(depttwo) 
-  - add the permission 'index-contributor' of index102 to the depttwo-contributor group
-  - add the permission 'index-contributor' and 'index-validator' of index102 to the depttwo-validator group
+  - add the permission 'index_contributor' of index102 to the depttwo_contributor group
+  - add the permission 'index_contributor' and 'index_validator' of index102 to the depttwo-validator group
 
 If adding a new user to depttwo, 
   - create a user, and add either depttwo-contributor group or depttwo-validator groupto the user based on its role 

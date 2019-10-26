@@ -3,11 +3,12 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy 
 from django.contrib.auth.mixins import PermissionRequiredMixin 
+from django.contrib.auth.decorators import permission_required
+from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator, EmptyPage,  PageNotAnInteger
 from .models import Index101
 from .forms import IndexForm 
 from commons.models import Description
-from django.http import HttpResponseRedirect
-
 
 # class IndexListView(PermissionRequiredMixin, ListView):
 #     permission_required = ('sims101.index-contributor') 
@@ -22,8 +23,8 @@ from django.http import HttpResponseRedirect
 #         if not ('form' in context):
 #             context['form'] = IndexForm()
 #         return context
- 
-from django.core.paginator import Paginator, EmptyPage,  PageNotAnInteger
+
+@permission_required('sims101.index_contributor')
 def IndexListView(request):
     object_list = Index101.objects.all() 
     first = Index101.objects.first()  
@@ -34,7 +35,7 @@ def IndexListView(request):
     try:
         object_list = paginator.page(page)
     except PageNotAnInteger:
-        object_list =  paginator.page(1)
+        object_list = paginator.page(1)
     except EmptyPage: 
         object_list = paginator.page(paginator.num_pages) 
 
@@ -52,15 +53,37 @@ def IndexListView(request):
         context = {'form':form, 'object_list':object_list, 'first':first, 'description':description}
     return render(request, 'sims101/index_list.html', context)
 
+# class IndexDetailView(PermissionRequiredMixin, DetailView):
+#     permission_required = ('sims101.index-contributor') 
+#     model = Index101
+#     template_name = 'sims101/index_detail.html' 
 
+from django.shortcuts import render
+def ajax_change_session(request):  
+    request.session['created'] = ""
+    return render(request, 'sims101/index_delete.html') 
 
+from decimal import Decimal
+def ajax_calculate(request):     ###  same as 'calculate' function  in model.py 
+    first_data = request.GET.get('first_data')
+    second_data = request.GET.get('second_data')
+    final_value = int(first_data) * Decimal(second_data)   
+    return render(request, 'sims101/final_value.html', {'final_value':final_value})
 
-class IndexDetailView(PermissionRequiredMixin, DetailView):
-    permission_required = ('sims101.index-contributor') 
+class IndexUpdateView(PermissionRequiredMixin, UpdateView):
+    permission_required = ('sims101.index_validator') 
     model = Index101
-    template_name = 'sims101/index_detail.html' 
+    form_class = IndexForm
+    template_name = 'sims101/index_update.html'
+    success_url = reverse_lazy('sims101:index_list')  
 
-# class IndexCreateView(PermissionRequiredMixin, CreateView):
+class IndexDeleteView(PermissionRequiredMixin, DeleteView):
+    permission_required = ('sims101.index_validator')    
+    model = Index101
+    template_name = 'sims101/index_delete.html'
+    success_url = reverse_lazy('sims101:index_list')  
+ 
+ # class IndexCreateView(PermissionRequiredMixin, CreateView):
 #     permission_required = ('sims101.index-contributor') 
 #     model = Index101
 #     form_class = IndexForm 
@@ -88,33 +111,6 @@ class IndexDetailView(PermissionRequiredMixin, DetailView):
     #         initial = super(IndexCreateView, self).get_initial(**kwargs)
     #         initial['title'] = 'My Title'
     #         return initial
-    
-
-from django.shortcuts import render
-def ajax_change_session(request):  
-    request.session['created'] = ""
-    return render(request, 'sims101/index_delete.html') 
-
-from decimal import Decimal
-def ajax_calculate(request):
-    first_data = request.GET.get('first_data')
-    second_data = request.GET.get('second_data')
-    final_value = int(first_data) * Decimal(second_data)   ###  same as defined in model.py 
-    return render(request, 'sims101/final_value.html', {'final_value':final_value})
-
-class IndexUpdateView(PermissionRequiredMixin, UpdateView):
-    permission_required = ('sims101.index-validator') 
-    model = Index101
-    form_class = IndexForm
-    template_name = 'sims101/index_update.html'
-    success_url = reverse_lazy('sims101:index_list')  
-
-class IndexDeleteView(PermissionRequiredMixin, DeleteView):
-    permission_required = ('sims101.index-validator')    
-    model = Index101
-    template_name = 'sims101/index_delete.html'
-    success_url = reverse_lazy('sims101:index_list')  
- 
 
 
 
