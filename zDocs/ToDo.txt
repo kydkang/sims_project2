@@ -1,9 +1,4 @@
 
-git document 사용법 공부하기 
-
-value one 이 너무 큰 경우 Integer Too Large 에러 발생 
-
-deleteView 새로운 화면으로 가지 않고, 그냥 확인 메시지만 보여준 다음 지우기 
 
 Description Table CRUD views
 
@@ -30,6 +25,42 @@ Deploy 준비
 - 등록레지스터 코멘트아웃되어있음 (홈.베이스) 
 - 패스워드체인지 코멘트아웃되어있음(홈))
 - pagination 작동 정지되어 있음.  작동시키려면   
-   : IndexListView에서 333을 작은 숫자로 바꾸고  
-   : index_list.html에서 {% block pagination %} 섹션을 언코멘트해야 함 
-   : ConnectionAbortedError: [WinError 10053] 에러 발생하지면 표면적으로는 잘 구동함 
+   : IndexListView에서 333을 작은 숫자 변경 (e.g., 5)
+   : index_list.html에서 {% block pagination %} 섹션을 언코멘트
+   : index_list.html의 script에서 
+         window.location.href = "{{ request.path }}"; 라인을 아래 라인으로 변경
+        // window.location.href = "{{ request.path }}?page={{ object_list.paginator.num_pages }}"; 
+   --> ConnectionAbortedError: [WinError 10053] 에러 발생하지면 표면적으로는 잘 구동함 
+
+
+deleteView 새로운 화면으로 가지 않고, 그냥 확인 메시지만 보여준 다음 지우기 
+
+    delete버튼의 click시 실행하는 ajax script 작성 
+        let confirmation = confirm("are you sure you want to remove the item?");
+        if (confirmation) {  .....
+        }
+    
+        {{ object_list }}를 data_object_list로 저장해서 script로 가지고 옴
+        {{ index.id }}를  data_index_id로 저장해서 script로 가지고 옴 
+        - var url = $("#id_name").attr("data_index_id");   
+        -  type: "POST",
+        - replace the second table in the listView 
+
+    /101/ajax/delete fuction 작성
+        - objec_list = request.POST.get('first_data')    
+        - id = request.POST.get('second_data')         
+        - index = get_obejct_or_404(Index101, id=id)
+        - index.delete() 
+        - from django.contrib import messages
+                messages.success(request, 'Successfully deleted!')
+
+    ListView Template에서 
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+

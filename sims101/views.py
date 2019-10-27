@@ -45,7 +45,7 @@ def IndexListView(request):
         if form.is_valid():              
             book = form.save()
             book.save()
-            request.session['created'] = "true"
+            request.session['created'] = "true"    
             # request.session.modified = True
             return render(request, 'sims101/index_list.html', context)
     else:
@@ -64,7 +64,7 @@ def ajax_change_session(request):
     return render(request, 'sims101/index_delete.html') 
 
 from decimal import Decimal
-def ajax_calculate(request):     ###  same as 'calculate' function  in model.py 
+def ajax_calculate(request):     ###  must be the same as 'calculate' function  in model.py 
     first_data = request.GET.get('first_data')
     second_data = request.GET.get('second_data')
     final_value = int(first_data) * Decimal(second_data)   

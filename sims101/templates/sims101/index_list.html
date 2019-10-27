@@ -4,7 +4,6 @@
 {% block content %}
 
 <div class="container-fluid">
-
     <table class="table mt-4">     
         <tr class="row">
             <td class="col-sm-3  text-left "> {% trans "Department:" %} </td>
@@ -87,20 +86,17 @@
         var url = "/101/ajax/change_session/" 
         $.ajax({
             url: url,
-            data: {
-            },
-            success: function (data) { 
-            }
+            data: { },
+            success: function (data) { }
         }); 
-        window.location.href = "{{ request.path }}?page={{ object_list.paginator.num_pages }}"; // redirect
+        // redirect to the last page 
+        window.location.href = "{{ request.path }}"; 
+        // window.location.href = "{{ request.path }}?page={{ object_list.paginator.num_pages }}"; 
     }; 
 </script>  
-
 {% endblock content %}
 
-
 {% comment %}
-
 {% block pagination %}
     <div class="container-fluid"> 
         <ul class="pagination" >
@@ -125,7 +121,6 @@
     </div>
     
 {% endblock pagination %} 
-
 {% endcomment %}
 
 
