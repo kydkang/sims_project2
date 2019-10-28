@@ -15,19 +15,14 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '8#0q@*y)8-69kxan2jci5d(mb0f&o11-6(rm&y4rrvpg-63@0c'
+# Add the following line in .env, .bashrc, .bash_profile or .zshrc where Shell read its contents when loading: 
+# this is the real key to be hidden from the public 
+#      export  DJANGO_SECRET_KEY='aq*insto=jr436h=m7&fp(j@(v!sz1tq&97s6kn51ha&jy(_8(')   ### << get a new one by creating a new django project
+#      export  DJANGO_DEBUG=""
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '8#0q@*y)8-69kxan2jci5d(mb0f&o11-6(rm&y4rrvpg-63@0c')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = ['kydkyd.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['sngreecu.herokuapp.com', '127.0.0.1']
 
 
 # Application definition

@@ -1,5 +1,4 @@
 
-
 Description Table CRUD views
 
 doc으로 정리하기 :: To manually randering form fields ::  https://overiq.com/django-1-11/django-rendering-form-fields-manually/  
@@ -11,10 +10,6 @@ Sign Up 템플릿을  Login 템플릿 처럼 풀어 쓰기
     그리고 translation 추가하기  
 create / delete / update 템플릿들이 번역되어 나오는지 확인하기 
 changepassword/done   logout  템플릿들이 번역되어 나오는지 확인
-
-
-사용자 메뉴얼  << git document 사용 
-오퍼레이터 메뉴얼  << git document 사용 
 
 비교 generics vs functions
 

@@ -43,20 +43,11 @@ Go to 127.0.0.1/admin
 
 << Roles and Permissions >> 
 
-If adding a new department (depttwo), 
-  - create 2 new groups : depttwo_contributor and depttwo_validator 
-    (Two groups are created for each department.)
-
-If adding a new index(index102) to an existing department(depttwo) 
-  - add the permission 'index_contributor' of index102 to the depttwo_contributor group
-  - add the permission 'index_contributor' and 'index_validator' of index102 to the depttwo-validator group
-
 If adding a new user to depttwo, 
-  - create a user, and add either depttwo-contributor group or depttwo-validator groupto the user based on its role 
-
+  - create a user, and add index102_contributor and/or index102_validator for each index
 [[  Each view has different permission assigned 
-    - createView, listView, detailView >> index-contributor 
-    - above views + deleteView, updateView  >>  index-validator 
+    - createView, listView, detailView >> contributor 
+    - above views + deleteView, updateView  >>  validator 
 ]] 
 
 For admin permission, create a superuser (python manage.py createsuperuser) 
