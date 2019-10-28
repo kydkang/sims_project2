@@ -1,7 +1,7 @@
 ﻿
 [How to do dumpdata and loaddata -- dj2Ex ch10]
 
-- Create \fixtures folder under the app directory 
+- Create \fixtures folder under each app directory 
 - To dump, in the project folder:  
        python manage.py dumpdata sims101 --indent=2 --output=sims101/fixtures/data.json
   Here, 'sims101' is the app name.  'data.json' is the output file name (name will do). 
