@@ -3,8 +3,8 @@
 
 - Create \fixtures folder under the app directory 
 - To dump, in the project folder:  
-       python manage.py dumpdata sims101 --indent=2 --output=sims101/fixtures/sims101.json
-  Here, 'sims101' is the app name.  For output, any file name will do (e.g., data.json). 
+       python manage.py dumpdata sims101 --indent=2 --output=sims101/fixtures/data.json
+  Here, 'sims101' is the app name.  'data.json' is the output file name (name will do). 
 - To load, in the project folder: 
        python manage.py loaddata sims101/fixtures/sims101.json 
 - You need to execute above steps for each app. 

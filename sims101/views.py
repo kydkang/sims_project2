@@ -4,25 +4,12 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy 
 from django.contrib.auth.mixins import PermissionRequiredMixin 
 from django.contrib.auth.decorators import permission_required
-from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage,  PageNotAnInteger
+from decimal import Decimal
 from .models import Index101
 from .forms import IndexForm 
 from commons.models import Description
-
-# class IndexListView(PermissionRequiredMixin, ListView):
-#     permission_required = ('sims101.index-contributor') 
-#     model = Index101                      ###  Or,   queryset = Post.objects.all()
-#     template_name = 'sims101/index_list.html'   ### default context name is 'object_list'. To change it, enter context_object_name = 'posts'
-#     # paginate_by = 3       ## 3 objects per page 
-
-#     def get_context_data(self, **kwargs):   ### get the first object to be used in the index_list.html 
-#         context = super(IndexListView, self).get_context_data(**kwargs) 
-#         context['first'] = Index101.objects.first()  
-#         context['description'] = Description.objects.get(sequence=Index101.SEQUENCE)
-#         if not ('form' in context):
-#             context['form'] = IndexForm()
-#         return context
 
 @permission_required('sims101.index_contributor')
 def IndexListView(request):
@@ -53,17 +40,10 @@ def IndexListView(request):
         context = {'form':form, 'object_list':object_list, 'first':first, 'description':description}
     return render(request, 'sims101/index_list.html', context)
 
-# class IndexDetailView(PermissionRequiredMixin, DetailView):
-#     permission_required = ('sims101.index-contributor') 
-#     model = Index101
-#     template_name = 'sims101/index_detail.html' 
-
-from django.shortcuts import render
 def ajax_change_session(request):  
     request.session['created'] = ""
     return render(request, 'sims101/index_delete.html') 
 
-from decimal import Decimal
 def ajax_calculate(request):     ###  must be the same as 'calculate' function  in model.py 
     first_data = request.GET.get('first_data')
     second_data = request.GET.get('second_data')
@@ -113,6 +93,22 @@ class IndexDeleteView(PermissionRequiredMixin, DeleteView):
     #         return initial
 
 
+# class IndexListView(PermissionRequiredMixin, ListView):
+#     permission_required = ('sims101.index-contributor') 
+#     model = Index101                      ###  Or,   queryset = Post.objects.all()
+#     template_name = 'sims101/index_list.html'   ### default context name is 'object_list'. To change it, enter context_object_name = 'posts'
+#     # paginate_by = 3       ## 3 objects per page 
+
+#     def get_context_data(self, **kwargs):   ### get the first object to be used in the index_list.html 
+#         context = super(IndexListView, self).get_context_data(**kwargs) 
+#         context['first'] = Index101.objects.first()  
+#         context['description'] = Description.objects.get(sequence=Index101.SEQUENCE)
+#         if not ('form' in context):
+#             context['form'] = IndexForm()
+#         return context
 
 
-
+# class IndexDetailView(PermissionRequiredMixin, DetailView):
+#     permission_required = ('sims101.index-contributor') 
+#     model = Index101
+#     template_name = 'sims101/index_detail.html' 
