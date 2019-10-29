@@ -3,15 +3,14 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from commons.models import Description
 
-class Index101(models.Model):       ###  NPFD=(Ft + Dt) / Pt * 100000
+class Index101(models.Model):       
     SEQUENCE = '101'
     description = models.ForeignKey(Description, on_delete=models.CASCADE) 
-    data_one = models.IntegerField(_('FT'), )
-    data_two = models.IntegerField(_('DT'), )
-    data_three = models.IntegerField(_('PT'), )
-    calculated_value = models.DecimalField(_('NPFD'), max_length=5, decimal_places=2, blank=True, )
-    # data_two = models.DecimalField(_('data two'), max_digits=5, decimal_places=2)
+    data_one = models.IntegerField(_('data one'), )
+    data_two = models.DecimalField(_('data two'), max_digits=5, decimal_places=2)
+    calculated_value = models.CharField(_('calculated'), max_length=32, blank=True, )
     # to make a field not visible in admin, use  editable=False
+ 
  
     class Meta:
         permissions = [
@@ -21,7 +20,7 @@ class Index101(models.Model):       ###  NPFD=(Ft + Dt) / Pt * 100000
         ordering = ['id'] 
 
     def calculate(self):
-        return ((self.data_one + self.data_two) / data_three ) * 100000
+        return self.data_one + self.data_two 
 
     def save(self, *args, **kwargs):
         self.calculated_value =  self.calculate() 
