@@ -1,0 +1,72 @@
+[[ Tango with Django ]]
+
+In settings.py, modify as follows: 
+
+    SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '8#0q@*y)8-69kxan2jci5d(mb0f&o11-6(rm&y4rrvpg-63@0c')
+    ## here the secret key is dummy one.  A real key will be added in .bashrc file later  
+    DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+    ALLOWED_HOSTS = ['sngreecu.pythonanywhere.com', '127.0.0.1']
+
+Then commit and push to git remote repository 
+
+Create a pythonanywhere account > sngreecu@sngre123ecu 
+
+Open a console in the pythonanywhere and enter 
+  mkvirtualenv --python=python3.7 env     [[ to remove >> rmvirtualenv env ]] 
+
+
+You can see that a directory called .virtualenvs has been created (ls -al)
+This is the directory in which all of your virtual environments and associated packages will be stored.
+
+nano .bashrc and enter  source virtualenvwrapper.sh  << already in there. no need to do
+
+to launch virtual env > workon env
+to deactivate virtual env >> deactivate
+
+From the home folder [[ /home/sngreecu/ ]],  clone your repository by :
+> git clone https://github.com/kydkang/sims_project2.git
+> cd sims_project2
+> pip install -r requirements.txt
+
+> python manage.py makemigrations
+> python manage.py migrate
+> python manage.py createsuperuser 
+
+Web tab > Add a new web app > manual configuration > Python version 3.7 
+
+http://sngreecu.pythonanywhere.com   will show generic Hello World! 
+
+Web tab > Virtualenv > enter path   /home/sngreecu/.virtualenvs/env
+
+Web tab > Code section >  /home/sngreecu/sims_project2  for both 'Source code' and 'Working directory'
+
+Web tab > under Code section, click link to WSGI configuration file
+        > modify the Django section as below  
+
+    import os
+    import sys
+    path = '/home/sngreecu/sims_project2'
+    if path not in sys.path:    
+        sys.path.append(path)
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'sims_project.settings'
+    from django.core.wsgi import get_wsgi_application
+    application = get_wsgi_application()
+
+Delete all other lines in the file > Save > 
+Web tab > Reload 
+
+Go to http://sngreecu.pythonanywhere.com 
+
+Web tab > Static files > create two rows as below 
+
+Enter URL :  /static/admin 
+Enter Path :  /home/sngreecu/.virtualenvs/env/lib/python3.7/site-packages/django/contrib/admin/static/admin 
+
+Enter URL:  /static    
+Enter Path :  /home/sngreecu/sims_project2/static
+
+
+Enter the following lines in .bashrc
+
+ export  SECRET_KEY=' ** create a new project and put a copy of secret key here** '
+ export  DEBUG=""

@@ -1,1 +1,0 @@
-web: gunicorn sims_project.wsgi --log-file -
