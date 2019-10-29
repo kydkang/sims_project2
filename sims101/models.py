@@ -2,13 +2,16 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from commons.models import Description
+from django.shortcuts import get_object_or_404
 
 class Index101(models.Model):       
     SEQUENCE = '101'
     description = models.ForeignKey(Description, on_delete=models.CASCADE) 
-    data_one = models.IntegerField(_('data one'), )
-    data_two = models.DecimalField(_('data two'), max_digits=5, decimal_places=2)
-    calculated_value = models.CharField(_('calculated'), max_length=32, blank=True, )
+    data_one = models.IntegerField(_('FT'), )
+    data_two = models.IntegerField(_('DT'), )
+    data_three = models.IntegerField(_('PT'), )
+    calculated_value = models.DecimalField(_('NPFD'), max_digits=7, decimal_places=2, blank=True, )
+    # data_two = models.DecimalField(_('data two'), max_digits=5, decimal_places=2)
     # to make a field not visible in admin, use  editable=False
  
  
@@ -20,11 +23,13 @@ class Index101(models.Model):
         ordering = ['id'] 
 
     def calculate(self):
-        return self.data_one + self.data_two 
+        return ((self.data_one + self.data_two) / self.data_three ) * 100000
 
     def save(self, *args, **kwargs):
         self.calculated_value =  self.calculate() 
         self.description = Description.objects.get(sequence=self.SEQUENCE)
+        self.description = get_object_or_404(Description, sequence=self.SEQUENCE)
+
         super(Index101, self).save(*args, **kwargs)
 
     def __str__(self):
