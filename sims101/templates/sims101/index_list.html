@@ -4,52 +4,60 @@
 {% block content %}
 
 <div class="container-fluid">
-    <table class="table mt-4">     
-        <tr class="row">
-            <td class="col-sm-3  text-left "> {% trans "Department:" %} </td>
-            <td class="col-sm-9 text-left"> 
-                    {% if first %} {{ first.description.department }} {% else %} {{ description.department}} {% endif %}
-            </td>
-        </tr> 
-        <tr class="row">
-            <td class="col-sm-3  text-left"> {% trans "Index:" %} </td>
-            <td class="col-sm-9  text-left">
-                    {% if first %} {{ first.description.index_name }} {% else %}{{ description.index_name}} {% endif %}
-            </td>
-        </tr>
-        <tr class="row">
-            <td class="col-sm-3 text-left"> {% trans "Description:" %} </td>
-            <td class="col-sm-9  text-left">
-                    {% if first %} {{ first.description.description|linebreaks}} {% else %} {{ description.description|linebreaks}} {% endif %}
-            </td>                
-        </tr>
-    </table>  
-    
-    <table class="table">
-            <tr class="row">
-                <th class="col-sm-2 text-center">FT</th>
-                <th class="col-sm-2 text-center">DT</th>
-                <th class="col-sm-2 text-center">PT</th>
-                <th class="col-sm-2 text-center">NPFD</th>
-            </tr>
-            {% for index in object_list %}
-                <tr class="row">
-                    <td class="col-sm-2 text-center">{{ index.data_one }}</td>
-                    <td class="col-sm-2 text-center">{{ index.data_two }}</td>
-                    <td class="col-sm-2 text-center">{{ index.data_three }}</td>
-                    <td class="col-sm-2 text-center">{{ index.calculated_value }}</td>
-                    <td></td>
-                    {% if 'sims101.index_validator' in perms %}
-                        <td class="col-sm-3 ">
-                            <a href="{% url 'sims101:index_update' index.id %}" class="btn btn-sm btn-outline-primary btn-editdelete "> Edit </a> 
-                            <a href="{% url 'sims101:index_delete' index.id %}" class="btn btn-sm btn-outline-danger btn-editdelete"> Delete</a> 
-                        </td>
-                    {% endif %}
-                </tr>
-            {% endfor %}
-    </table>
 
-    <h6> New Index Data </h6>
+    <div class="container">
+        <div class="row mt-4"> <div class="col-12"> <hr> </div> </div>
+        <div class="row">
+          <div class="col-md-3">    {% trans "Department:" %} </div>
+          <div class="col-md-8" >     
+            {% if first %} {{ first.description.department }} {% else %} {{ description.department}} {% endif %}
+          </div>
+        </div>
+        <div class="row"> <div class="col-12"> <hr> </div> </div>
+        <div class="row">
+            <div class="col-md-3">    {% trans "Index:" %} </div>
+            <div class="col-md-8" >     
+                {% if first %} {{ first.description.index_name }} {% else %}{{ description.index_name}} {% endif %}            
+            </div>
+        </div>
+        <div class="row"> <div class="col-12"> <hr> </div> </div>
+        <div class="row">
+            <div class="col-md-3">   {% trans "Description:" %}  </div>
+            <div class="col-md-8" >     
+                    {% if first %} {{ first.description.description|linebreaks}} {% else %} {{ description.description|linebreaks}} {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% comment %}    
+{% endcomment %}
+
+    <div class="container">
+        <div class="col-10">  <hr> </div>
+        <div class="row mt-0">
+            <div class="col-sm-2 text-center">    FT </div>
+            <div class="col-sm-2 text-center">    DT </div>
+            <div class="col-sm-2 text-center">    PT </div>
+            <div class="col-sm-2 text-center">    NPFD </div>
+        </div>
+        <div class="col-10">  <hr> </div>
+        {% for index in object_list %}
+            <div class="row mt-3">
+                <div class="col-sm-2 text-center">{{ index.data_one }}</div>
+                <div class="col-sm-2 text-center">{{ index.data_two }}</div>
+                <div class="col-sm-2 text-center">{{ index.data_three }}</div>
+                <div class="col-sm-2 text-center">{{ index.calculated_value }}</div>
+                {% if 'sims101.index_validator' in perms %}
+                    <div class="col-sm-3 ">
+                        <a href="{% url 'sims101:index_update' index.id %}" class="btn btn-sm btn-outline-primary btn-editdelete "> Edit </a> 
+                        <a href="{% url 'sims101:index_delete' index.id %}" class="btn btn-sm btn-outline-danger btn-editdelete"> Delete</a> 
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <h6 class="mt-4"> New Index Data </h6>
     {{ form.non_field_errors }}
     <form action="{% url 'sims101:index_list' %}" method="POST">
         {% csrf_token %}

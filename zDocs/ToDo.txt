@@ -1,4 +1,6 @@
 
+table을  row/col으로 변경하기 ::  edge에서 에러 발생 
+
 Description Table CRUD views
 
 doc으로 정리하기 :: To manually randering form fields ::  https://overiq.com/django-1-11/django-rendering-form-fields-manually/  
