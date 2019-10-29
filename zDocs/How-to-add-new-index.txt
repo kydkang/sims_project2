@@ -45,9 +45,8 @@ Go to 127.0.0.1/admin
 
 If adding a new user to depttwo, 
   - create a user, and add index102_contributor and/or index102_validator for each index
-[[  Each view has different permission assigned 
-    - createView, listView, detailView >> contributor 
-    - above views + deleteView, updateView  >>  validator 
-]] 
+  - contributer << add index102_contributor
+  - validator << add index102_contributer and index1102_validator 
+[[  validator can edit and delete index data ]] 
 
 For admin permission, create a superuser (python manage.py createsuperuser) 

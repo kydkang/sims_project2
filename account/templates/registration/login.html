@@ -7,86 +7,63 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container-fluid">
     <div class="row mt-4">
-      <div class="col-md-4 col-md-offset-4">
+        {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+                  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+          </ul>
+        {% endif %}
 
-{% if messages %}
-  <ul class="messages">
-      {% for message in messages %}
-          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
-  </ul>
-{% endif %}
+        {% if form.errors %}
+          <p> {% trans "Your username and password didn't match. Please try again." %} </p>
+        {% endif %}
 
-{% if form.errors %}
-  <p> {% trans "Your username and password didn't match. Please try again." %} </p>
-{% endif %}
+        {% if next %}       {# [[ routed to this login page from ‘next’ page ]] #} 
+          <p>Please login to see this page.</p>
+        {% endif %}
+    </div>
 
-{% if next %}       {# [[ routed to this login page from ‘next’ page ]] #} 
-  <p>Please login to see this page.</p>
-{% endif %}
-
-<form method="post" action="{% url 'login' %}">  <!--  https://overiq.com/django-1-11/django-rendering-form-fields-manually/  -->
-  {% csrf_token %}
-
-  <table class="login-table">
-    <tr >
-      <td>User Name: </td>
-      <td>
-          {{ form.username.errors }}
-          {{ form.username }}                            
-      </td>
-      <td>
+    <form method="post" action="{% url 'login' %}">  <!--  https://overiq.com/django-1-11/django-rendering-form-fields-manually/  -->
+      {% csrf_token %}
+      <div class="row"> 
+        <div class="col-2"> User Name: </div>
+        <div class="col-2 ml-auto">
+            {{ form.username.errors }}
+            {{ form.username }}     
+        </div>
+        <div class="col-8">
           {% if form.username.help_text %}
             {{ form.username.help_text }}
           {% endif %}
-      </td>
-    </tr>
-    <tr class="login-table">
-      <td>Password: </td>
-      <td>
-          {{ form.password.errors }}
-          {{ form.password }}                            
-      </td>
-      <td>
+        </div>
+      </div>
+      <div class="row mt-4"> 
+        <div class="col-2"> Password: </div>
+        <div class="col-2 ml-auto">
+            {{ form.password.errors }}
+            {{ form.password }} 
+        </div>
+        <div class="col-8">
           {% if form.password.help_text %}
             {{ form.password.help_text }}
           {% endif %}
-      </td>
-    </tr>
-    <tr class="login-table">
-        <td></td>
-        <td colspan="2"><input type="submit" value="Submit" class="btn btn-info"></td>
-    </tr>
-    </table>
-</form>  
+        </div>
+      </div>
+      <div class="row mt-4">
+          <div class="col-2"></div>
+        <div class="col-2 ml-auto">
+            <input type="submit" value="Submit" class="btn btn-outline-info">
+        </div>
+        <div class="col-8"></div>
+      </div>
+    </form>  
 
-</div>
-</div>
 </div>
 
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

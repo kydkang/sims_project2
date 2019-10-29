@@ -11,9 +11,6 @@ class Index101(models.Model):
     data_two = models.IntegerField(_('DT'), )
     data_three = models.IntegerField(_('PT'), )
     calculated_value = models.DecimalField(_('NPFD'), max_digits=7, decimal_places=2, blank=True, )
-    # data_two = models.DecimalField(_('data two'), max_digits=5, decimal_places=2)
-    # to make a field not visible in admin, use  editable=False
- 
  
     class Meta:
         permissions = [
@@ -22,14 +19,13 @@ class Index101(models.Model):
         ]
         ordering = ['id'] 
 
-    def calculate(self):
+    def calculate(self):         ##  also need to change  ajax_calculate() function 
         return ((self.data_one + self.data_two) / self.data_three ) * 100000
 
     def save(self, *args, **kwargs):
         self.calculated_value =  self.calculate() 
-        self.description = Description.objects.get(sequence=self.SEQUENCE)
+        # self.description = Description.objects.get(sequence=self.SEQUENCE)
         self.description = get_object_or_404(Description, sequence=self.SEQUENCE)
-
         super(Index101, self).save(*args, **kwargs)
 
     def __str__(self):
