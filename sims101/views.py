@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy 
 from django.contrib.auth.mixins import PermissionRequiredMixin 
 from django.contrib.auth.decorators import permission_required
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage,  PageNotAnInteger
 from decimal import Decimal
 from .models import Index101
@@ -15,7 +15,8 @@ from commons.models import Description
 def IndexListView(request):
     object_list = Index101.objects.all() 
     first = Index101.objects.first()  
-    description= Description.objects.get(sequence=Index101.SEQUENCE)
+    # description= Description.objects.get(sequence=Index101.SEQUENCE)
+    description = get_object_or_404(Description, sequence=Index101.SEQUENCE)
 
     paginator = Paginator(object_list, 333)
     page = request.GET.get('page')
@@ -30,8 +31,8 @@ def IndexListView(request):
         form = IndexForm(request.POST)
         context = {'form':form, 'object_list':object_list, 'first':first, 'description':description}
         if form.is_valid():              
-            book = form.save()
-            book.save()
+            index_data = form.save()
+            index_data.save()
             request.session['created'] = "true"    
             # request.session.modified = True
             return render(request, 'sims101/index_list.html', context)
@@ -45,9 +46,11 @@ def ajax_change_session(request):
     return render(request, 'sims101/index_delete.html') 
 
 def ajax_calculate(request):     ###  must be the same as 'calculate' function  in model.py 
-    first_data = request.GET.get('first_data')
-    second_data = request.GET.get('second_data')
-    final_value = int(first_data) * Decimal(second_data)   
+    data_one = int(request.GET.get('data_one'))
+    data_two = int(request.GET.get('data_two'))
+    data_three = int(request.GET.get('data_three')) 
+    calculated_value = ((data_one + data_two) / data_three ) * 100000
+    calculated_value = format(calculated_value, '.2f')
     return render(request, 'sims101/final_value.html', {'final_value':final_value})
 
 class IndexUpdateView(PermissionRequiredMixin, UpdateView):
