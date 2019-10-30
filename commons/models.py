@@ -21,7 +21,7 @@ class Description(models.Model):
         ('106', '106'), ('107', '107'), ('108', '108'), ('109', '109'), ('110', '110'),
     )
 
-    sequence = models.CharField(_('sequence'), max_length=3, choices=SEQ_CHOICES) 
+    sequence = models.CharField(_('sequence'), max_length=3, unique=True, choices=SEQ_CHOICES) 
     department = models.CharField(_('department'), max_length=100, choices=DEPT_CHOICES)
     index_name = models.CharField(_('index name'), max_length=50)
     description = models.TextField(_('description'),) 
