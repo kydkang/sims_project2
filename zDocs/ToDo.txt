@@ -14,20 +14,6 @@ changepassword/done   logout  템플릿들이 번역되어 나오는지 확인
 비교 generics vs functions
 
 
-Deploy 준비 
-- 셋업.py에서 랭귀지를 en으로 변경하기 
-- user 생성 (admin, admin), (contributor, contributor) (validator, validator) 
-- 등록레지스터 코멘트아웃되어있음 (홈.베이스) 
-- 패스워드체인지 코멘트아웃되어있음(홈))
-- pagination 작동 정지되어 있음.  작동시키려면   
-   : IndexListView에서 333을 작은 숫자 변경 (e.g., 5)
-   : index_list.html에서 {% block pagination %} 섹션을 언코멘트
-   : index_list.html의 script에서 
-         window.location.href = "{{ request.path }}"; 라인을 아래 라인으로 변경
-        // window.location.href = "{{ request.path }}?page={{ object_list.paginator.num_pages }}"; 
-   --> ConnectionAbortedError: [WinError 10053] 에러 발생하지면 표면적으로는 잘 구동함 
-
-
 deleteView 새로운 화면으로 가지 않고, 그냥 확인 메시지만 보여준 다음 지우기 
 
     delete버튼의 click시 실행하는 ajax script 작성 
