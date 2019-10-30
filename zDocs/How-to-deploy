@@ -99,16 +99,30 @@ In pythonanywhere console,
 In your local computer, 
     git checkout target_branch  [[ target_branch is the branch you want to deploy ]]
     copy (create) the project to sims_project33 folder 
-    create a remote repository 'sims_project33' at GitHub    
+    create a new remote repository 'sims_project33' at GitHub    
     in the sims_project33 folder, 
         git remote add origin https://github.com/kydkang/sims_project33.git
         git push origin master
 In pythonanywhere console,        
     workon env 
-    rm -rf sims_project2
+    rm -rf sims_project2       ##  [[ delete the whole folder ]]
     git clone https://github.com/kydkang/sims_project33.git sims_project2
     Replace the db.sqlite3 file by the same file in local computer  
 
+[[ 다른 방법 ]]
+How do I clone a specific Git branch? 
+Clone에는   이미 git remote add origin RemoteURL 과  git pull origin master 이 실행되어 있음  
+lyw112sis에서 master branch를 올린다음  demo1 branch로 바꾸어보자 
+
+git clone --single-branch --branch <branchname> <remote-repo>
+git clone --single-branch -b 5.1-branch  https://github.com/kydkang/sims_project2.git sims_project2
+
+[[ To make Demo 1]]
+- base.html > menu button comment out
+- favicon.ico 이름 변경
+- home.html  create login button at the bottom 
+- create user  'userone' + sngresngre
+- create superuser  
 
 
 [[ Deploy 준비 ]] 
