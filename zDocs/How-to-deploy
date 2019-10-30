@@ -1,5 +1,7 @@
 [[ Tango with Django ]]
 
+
+[[ For Initial Deployment ]]
 In settings.py, modify as follows: 
 
     SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '8#0q@*y)8-69kxan2jci5d(mb0f&o11-6(rm&y4rrvpg-63@0c')
@@ -11,41 +13,38 @@ Then commit and push to git remote repository
 
 Create a pythonanywhere account > sngreecu@sngre123ecu 
 
-Open a console in the pythonanywhere and enter 
+Open a bash console in the pythonanywhere and enter 
   mkvirtualenv --python=python3.7 env     [[ to remove >> rmvirtualenv env ]] 
-
 
 You can see that a directory called .virtualenvs has been created (ls -al)
 This is the directory in which all of your virtual environments and associated packages will be stored.
 
-nano .bashrc and enter  source virtualenvwrapper.sh  << already in there. no need to do
+nano .bashrc and enter  'source virtualenvwrapper.sh'  << already in there. no need to do
 
-to launch virtual env > workon env
-to deactivate virtual env >> deactivate
+Launch virtual env >>> workon env
+   (to deactivate virtual env >> deactivate)   
 
 From the home folder [[ /home/sngreecu/ ]],  clone your repository by :
-> git clone https://github.com/kydkang/sims_project2.git
-> cd sims_project2
+**> git clone https://github.com/kydkang/sims_project2.git
+**> cd sims_project2
 > pip install -r requirements.txt
 
 > python manage.py makemigrations
 > python manage.py migrate
-> python manage.py createsuperuser 
+> python manage.py createsuperuser   ##################
 
 Web tab > Add a new web app > manual configuration > Python version 3.7 
 
-http://sngreecu.pythonanywhere.com   will show generic Hello World! 
-
 Web tab > Virtualenv > enter path   /home/sngreecu/.virtualenvs/env
 
-Web tab > Code section >  /home/sngreecu/sims_project2  for both 'Source code' and 'Working directory'
+**Web tab > Code section >  /home/sngreecu/sims_project2  for both 'Source code' and 'Working directory'
 
 Web tab > under Code section, click link to WSGI configuration file
         > modify the Django section as below  
 
     import os
     import sys
-    path = '/home/sngreecu/sims_project2'
+    path = '/home/sngreecu/sims_project2'     ## ******* ##
     if path not in sys.path:    
         sys.path.append(path)
     os.environ['DJANGO_SETTINGS_MODULE'] = 'sims_project.settings'
@@ -63,10 +62,64 @@ Enter URL :  /static/admin
 Enter Path :  /home/sngreecu/.virtualenvs/env/lib/python3.7/site-packages/django/contrib/admin/static/admin 
 
 Enter URL:  /static    
-Enter Path :  /home/sngreecu/sims_project2/static
+** Enter Path :  /home/sngreecu/sims_project2/static
 
-
-Enter the following lines in .bashrc
+Enter the following lines in .bashrc  [[  create a new project and put a new secret key ]]
 
  export  SECRET_KEY=' ** create a new project and put a copy of secret key here** '
  export  DEBUG=""
+
+[[ To Upgrade (to sims_project33) << 작동 안함 ... 밑의 다른 방법 시도..]] 
+In your local computer, 
+    git checkout target_branch  [[ target_branch is the branch you want to deploy ]]
+    copy (create) the project to sims_project33 folder 
+    create a remote repository 'sims_project33' at GitHub    
+    in the sims_project33 folder, 
+        git remote set-url origin https://github.com/kydkang/sims_project33.git
+        git push origin master
+In pythonanywhere console, 
+    mkvirtualenv --python=python3.7 env33  
+    workon env33 
+    From the home folder (check with pwd) [[ /home/sngreecu/ ]],  clone your repository by :
+        > git clone https://github.com/kydkang/sims_project33.git
+        > cd sims_project33
+        > pip install -r requirements.txt
+        > python manage.py makemigrations
+        > python manage.py migrate
+        > python manage.py createsuperuser 
+    Web tab > Code section >  /home/sngreecu/sims_project33  for both 'Source code' and 'Working directory'
+    Web tab > Code section > click link to WSGI configuration file > modify
+        path = '/home/sngreecu/sims_project33'   
+    Web tab > Static files > modify 
+        Enter Path :  /home/sngreecu/sims_project33/static
+    Replace the db.sqlite3 file by the same file in sims_project33 folder
+    Web > Reload 
+
+[[ 다른 방법 ]]
+In your local computer, 
+    git checkout target_branch  [[ target_branch is the branch you want to deploy ]]
+    copy (create) the project to sims_project33 folder 
+    create a remote repository 'sims_project33' at GitHub    
+    in the sims_project33 folder, 
+        git remote add origin https://github.com/kydkang/sims_project33.git
+        git push origin master
+In pythonanywhere console,        
+    workon env 
+    rm -rf sims_project2
+    git clone https://github.com/kydkang/sims_project33.git sims_project2
+    Replace the db.sqlite3 file by the same file in local computer  
+
+
+
+[[ Deploy 준비 ]] 
+- 셋업.py에서 랭귀지를 en으로 변경하기 
+- user 생성 (admin, admin), (contributor, contributor) (validator, validator) 
+- 등록레지스터 코멘트아웃되어있음 (홈.베이스) 
+- 패스워드체인지 코멘트아웃되어있음(홈))
+- pagination 작동 정지되어 있음.  작동시키려면   
+   : IndexListView에서 333을 작은 숫자 변경 (e.g., 5)
+   : index_list.html에서 {% block pagination %} 섹션을 언코멘트
+   : index_list.html의 script에서 
+         window.location.href = "{{ request.path }}"; 라인을 아래 라인으로 변경
+        // window.location.href = "{{ request.path }}?page={{ object_list.paginator.num_pages }}"; 
+   --> ConnectionAbortedError: [WinError 10053] 에러 발생하지면 표면적으로는 잘 구동함 
