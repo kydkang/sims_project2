@@ -14,14 +14,13 @@ Create a pythonanywhere account > sngreecu@sngre123ecu
 Open a console in the pythonanywhere and enter 
   mkvirtualenv --python=python3.7 env     [[ to remove >> rmvirtualenv env ]] 
 
-
 You can see that a directory called .virtualenvs has been created (ls -al)
 This is the directory in which all of your virtual environments and associated packages will be stored.
 
-nano .bashrc and enter  source virtualenvwrapper.sh  << already in there. no need to do
+nano .bashrc and enter  'source virtualenvwrapper.sh'  << already in there. no need to do
 
 to launch virtual env > workon env
-to deactivate virtual env >> deactivate
+   (to deactivate virtual env >> deactivate)   
 
 From the home folder [[ /home/sngreecu/ ]],  clone your repository by :
 > git clone https://github.com/kydkang/sims_project2.git
