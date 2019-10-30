@@ -120,7 +120,7 @@ git clone --single-branch -b 5.1-branch  https://github.com/kydkang/sims_project
 [[ To make Demo 1]]
 - base.html > menu button comment out
 - favicon.ico 이름 변경
-- home.html  create login button at the bottom 
+- home.html > create login button at the bottom 
 - create user  'userone' + sngresngre
 - create superuser  
 
