@@ -11,7 +11,7 @@ from .models import Index101
 from .forms import IndexForm 
 from commons.models import Description
 
-@permission_required('sims101.index_contributor')
+@permission_required('sims101.index101_contributor')
 def IndexListView(request):
     object_list = Index101.objects.all() 
     first = Index101.objects.first()  
@@ -54,14 +54,14 @@ def ajax_calculate(request):     ###  must be the same as 'calculate' function  
     return render(request, 'sims101/calculated_value.html', {'calculated_value':calculated_value})
 
 class IndexUpdateView(PermissionRequiredMixin, UpdateView):
-    permission_required = ('sims101.index_validator') 
+    permission_required = ('sims101.index101_validator') 
     model = Index101
     form_class = IndexForm
     template_name = 'sims101/index_update.html'
     success_url = reverse_lazy('sims101:index_list')  
 
 class IndexDeleteView(PermissionRequiredMixin, DeleteView):
-    permission_required = ('sims101.index_validator')    
+    permission_required = ('sims101.index101_validator')    
     model = Index101
     template_name = 'sims101/index_delete.html'
     success_url = reverse_lazy('sims101:index_list')  
